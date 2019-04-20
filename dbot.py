@@ -24,3 +24,6 @@ while True:
             break
             
     time.sleep(3)
+    timeout = time.time() + 25
+    if time.time() > timeout:
+        break
