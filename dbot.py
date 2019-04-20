@@ -6,6 +6,7 @@ request_params = {'token': 'Y9KfQe7ICjWtWFZjmFc5RL78yB4F2X4AeWWbEpfS'}
 group_id = '48976167'
 bot_id = '021293724be9d5473e3a2dec3a'
 
+timeout = time.time() + 25
 while True:
     response = requests.get('https://api.groupme.com/v3/groups/' + group_id + '/messages', params = request_params)
     if (response.status_code == 200):
@@ -24,6 +25,5 @@ while True:
             break
             
     time.sleep(3)
-    timeout = time.time() + 25
     if time.time() > timeout:
         break
