@@ -1,1 +1,1 @@
-web: gunicorn dbot:app
+web: gunicorn dbot:app --log-file=-

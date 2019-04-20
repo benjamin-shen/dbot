@@ -1,27 +1,32 @@
-import requests
-import time
+# handle post requests
+import os
+import json
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
 
-# groupme variables
-request_params = {'token': 'Y9KfQe7ICjWtWFZjmFc5RL78yB4F2X4AeWWbEpfS'}
-group_id = '48976167'
-bot_id = '021293724be9d5473e3a2dec3a'
+from flask import Flask, request
+app = Flask(__name__)
 
-timeout = time.time() + 25
-while time.time() < timeout:
-    response = requests.get('https://api.groupme.com/v3/groups/' + group_id + '/messages', params = request_params)
-    if (response.status_code == 200):
-        response_messages = response.json()['response']['messages']
-    
-    for message in response_messages:
-        if (message['text'] == 'dbot'):
-            
-            # message
-            to_send = 'I hear my name'
-            
-            # send to bot
-            post_params = { 'bot_id' : bot_id, 'text': to_send }
-            requests.post('https://api.groupme.com/v3/bots/post', params = post_params)
-            request_params['since_id'] = message['id']
-            break
-            
-    time.sleep(3)
+@app.route('/', methods=['POST'])
+def webhook():
+    data = request.get_json()
+
+    if data['name'] != 'dubembot':
+        # send message
+        msg = '{}, you sent "{}".'.format(data['name'], data['text'])
+        send_message(msg)
+
+    return "ok", 200
+
+def parse_message(msg):
+    return
+
+def send_message(command):
+    url  = 'https://api.groupme.com/v3/bots/post'
+
+    data = {
+        'bot_id' : os.getenv('GROUPME_BOT_ID'),
+        'text'   : command,
+    }
+    request = Request(url, urlencode(data).encode())
+    json = urlopen(request).read().decode()
