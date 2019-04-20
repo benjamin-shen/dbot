@@ -1,1 +1,1 @@
-worker: python dbot.py
+web: gunicorn dbot.py:app
