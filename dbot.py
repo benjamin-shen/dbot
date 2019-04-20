@@ -76,9 +76,9 @@ def create_message(commands):
         for command in commands:
             if command=="help":
                 for key,value in responseDict.items():
-                    result += key + " - " + value + "\n"
+                    result += "dbot " + key + " - " + value + "\n"
             elif command=="info":
-                result += "dbot is a GroupMe bot created by Benjamin Shen '22. What does the d stand for? Go to https://github.com/benjamin-shen/dubembot to find out." + "\n"
+                result += "dbot is a GroupMe bot created by Benjamin Shen '22. What does the d stand for? I dunno. https://github.com/benjamin-shen/dubembot for the code." + "\n"
             else:
                 "Error: incorrect parsing."
         return result
