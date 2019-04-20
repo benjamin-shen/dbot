@@ -2,8 +2,10 @@ import requests
 import time
 
 # get port
+from os import environ
 from flask import Flask
-port = int(os.environ.get('PORT', 5000))
+app = Flask(__name__)
+app.run(environ.get('PORT'))
 
 # groupme variables
 request_params = {'token': 'Y9KfQe7ICjWtWFZjmFc5RL78yB4F2X4AeWWbEpfS'}
