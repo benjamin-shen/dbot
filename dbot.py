@@ -12,12 +12,11 @@ app = Flask(__name__)
 # dbot
 responseDict = {
     'help': 'list commands dbot knows',
-    
+    'info': 'learn about dbot',
 }
 understandableDict = {
     'dbot': "I heard my name.",
-    'dbot hi': "Hello you wonderful person.",
-    'dbot hel': "Watch your language.",
+    
 }
 
 # someone sends a message
@@ -33,12 +32,13 @@ def webhook():
         if text.startswith('dbot'):
             bot_action(text)
         # doesn't call bot
-        result = ""
-        for key,value in understandableDict.items():
-            if key in text:
-                result += value + "\n";
-        if len(result) != 0:
-            send_message(result)
+        else:
+            result = ""
+            for key,value in understandableDict.items():
+                if key in text:
+                    result += value + "\n";
+            if len(result) != 0:
+                send_message(result)
     
     return "ok", 200
 
@@ -74,4 +74,10 @@ def create_message(commands):
     else:
         result = ""
         for command in commands:
-            return "command" #
+            if command=="help":
+                for key,value in responseDict.items():
+                    result += key + " - " + value + "\n"
+            elif command=="info":
+                result += "dbot is a GroupMe bot created by Benjamin Shen '22. What does the d stand for? Go to https://github.com/benjamin-shen/dubembot to find out." + "\n"
+            else:
+                "Error: incorrect parsing."
