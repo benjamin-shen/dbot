@@ -81,3 +81,4 @@ def create_message(commands):
                 result += "dbot is a GroupMe bot created by Benjamin Shen '22. What does the d stand for? Go to https://github.com/benjamin-shen/dubembot to find out." + "\n"
             else:
                 "Error: incorrect parsing."
+        return result
