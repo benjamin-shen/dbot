@@ -1,1 +1,1 @@
-web: python dbot.py
+web: python dbot.py:app
