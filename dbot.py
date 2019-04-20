@@ -34,7 +34,7 @@ def webhook():
             bot_action(text)
         # doesn't call bot
         result = ""
-        for key,value in understandableDict.iteritems():
+        for key,value in understandableDict.items():
             if key in text:
                 result += value + "\n";
         if len(result) != 0:
@@ -60,7 +60,7 @@ def send_message(to_send):
 def parse_message(msg):
     words = msg.split(" ")
     words.pop(0) # remove call to dbot
-    for key,value in responseDict.iteritems():
+    for key in responseDict.keys():
         responseArray.append(key)
     commands = []
     for word in words:
