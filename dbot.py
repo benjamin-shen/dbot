@@ -24,7 +24,7 @@ understandableDict = {
 @app.route('/', methods=['POST'])
 def webhook():
     data = request.get_json()
-    time.wait(3)
+    time.sleep(1)
     name = data['name']
     text = data['text'].lower()
     
