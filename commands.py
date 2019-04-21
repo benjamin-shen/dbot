@@ -1,8 +1,43 @@
-responseDict = {
-    'help': "list the commands I know",
-    'info': "learn about me",
-    '[name]': "glozz member isms"
-}
+responseDict = {}
+with open('dictionaries/response.txt', 'r') as file:
+    responseArray = file.readlines()
+    for line in responseArray:
+        colon = line.find(':')
+        if colon != -1:
+            keyword = line[:colon]
+            response = line[colon+1:].strip() # remove white space
+            responseDict[keyword] = response
+            
+understandableDict = {}
+with open('dictionaries/understandable.txt', 'r') as file:
+    understandableArray = file.readlines()
+    for line in understandableArray:
+        colon = line.find(':')
+        if colon != -1:
+            keyword = line[:colon]
+            response = line[colon+1:].strip() # remove white space
+            understandableDict[keyword] = response
+            
+# responseDict = {
+    # 'help': "list the commands I know",
+    # 'info': "learn about me",
+    # '[name]': "glozz member isms"
+# }
+
+# understandableDict = {
+    # 'dbot': "I heard my name.",
+    # 'julia adolphe': "All hail the Skylord!",
+    # 'steve': "Dr. Steeeeve!",
+    # 'tour': "Yeah tour!",
+    # 'general': "*salute*",
+    # 'werewolf': "Werewolf?",
+    
+    
+    # 'fuck': "Watch your fucking language. (Did you mean to say 'duck'?)",
+    # 'bitch': "",
+    # 'dick': "",
+    # 'penis': "",
+# }
 
 def help():
     result = ""
@@ -14,5 +49,6 @@ def info():
     
     
 # testing
+print(understandableDict)
 print(help())
 print(info())
