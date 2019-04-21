@@ -76,7 +76,7 @@ def parse_message(msg):
     words = msg.split(" ")
     words.pop(0) # remove call to dbot
     responseArray = []
-    for key in responseDict.keys():
+    for key in dbot.responseDict.keys():
         responseArray.append(key)
     commands = []
     for word in words:
