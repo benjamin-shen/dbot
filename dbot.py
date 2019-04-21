@@ -55,9 +55,9 @@ def webhook():
                         if length==0:
                             send_message("vagina")
                         elif length==1:
-                            send_message(length + " inch")
+                            send_message(str(length) + " inch")
                         else:
-                            send_message(length + " inches")
+                            send_message(str(length) + " inches")
                     else:
                         send_message(value);
     
