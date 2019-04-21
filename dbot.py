@@ -1,4 +1,3 @@
-# http://www.apnorton.com/blog/2017/02/28/How-I-wrote-a-Groupme-Chatbot-in-24-hours/
 # handle post requests
 import os
 import time
@@ -11,11 +10,7 @@ from flask import Flask, request
 app = Flask(__name__)
 
 # dbot
-responseDict = {
-    'help': "list the commands I know",
-    'info': "learn about me",
-    '[name]': "glozz member isms"
-}
+import commands as dbot
 understandableDict = {
     'dbot': "I heard my name.",
     'julia adolphe': "All hail the Skylord!",
@@ -75,7 +70,6 @@ def send_message(to_send):
     }
     request = Request(url, urlencode(data).encode())
     json = urlopen(request).read().decode()
-# do another action eg. tussle
 
 # helper functions
 def parse_message(msg):
@@ -95,11 +89,8 @@ def create_message(commands):
     else:
         for command in commands:
             if command=="help":
-                result = ""
-                for key,value in responseDict.items():
-                    result += "dbot " + key + " - " + value + "\n"
-                send_message(result)
+                send_message(dbot.help())
             elif command=="info":
-                send_message("dbot is a GroupMe bot created by Ben Shen '22. The d stands for Douglas.")
+                send_message(dbot.info())
             else:
                 send_message("Error: incorrect parsing.")

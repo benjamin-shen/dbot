@@ -1,3 +1,8 @@
+http://www.apnorton.com/blog/2017/02/28/How-I-wrote-a-Groupme-Chatbot-in-24-hours/
+
+
+fix 1000 character limit interpretation in dictionary
+
 every time dbot is called, 1% chance aidan is kicked
 rpg game thing
 tussle
@@ -11,8 +16,8 @@ dbot [name] ism
 dbot [nickname] -> gives user their nickname
 name in conversation -> 50/50 smash or pass (100% for robert)
 nate talks 10%: Careful, that's Natebot.
-dubem talks 10%: 
-ben talks 10%: 
+dubem talks 10%: We have [randomint]/4 voice parts.
+ben talks 10%: Yes Daddy.
 lucas talks 10%: Yoshi!
 aidan talks 10%: CORRECT.
 
