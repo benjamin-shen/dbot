@@ -15,8 +15,6 @@ dubem talks 10%:
 ben talks 10%: 
 lucas talks 10%: Yoshi!
 aidan talks 10%: CORRECT.
-dick -> integer 1-12 inches
-
 
 
 
