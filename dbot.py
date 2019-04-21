@@ -76,9 +76,7 @@ def create_message(commands):
         send_message("Try 'dbot help'.")
     else:
         for command in commands:
-            if command=="help":
-                send_message(dbot.help())
-            elif command=="info":
-                send_message(dbot.info())
-            else:
-                send_message("Error: incorrect parsing.")
+            try:
+                send_message(eval("dbot." + command + "()"))
+            except:
+                send_message("Error: command not defined.")

@@ -17,27 +17,6 @@ with open('dictionaries/understandable.txt', 'r') as file:
             keyword = line[:colon]
             response = line[colon+1:].strip() # remove white space
             understandableDict[keyword] = response
-            
-# responseDict = {
-    # 'help': "list the commands I know",
-    # 'info': "learn about me",
-    # '[name]': "glozz member isms"
-# }
-
-# understandableDict = {
-    # 'dbot': "I heard my name.",
-    # 'julia adolphe': "All hail the Skylord!",
-    # 'steve': "Dr. Steeeeve!",
-    # 'tour': "Yeah tour!",
-    # 'general': "*salute*",
-    # 'werewolf': "Werewolf?",
-    
-    
-    # 'fuck': "Watch your fucking language. (Did you mean to say 'duck'?)",
-    # 'bitch': "",
-    # 'dick': "",
-    # 'penis': "",
-# }
 
 def help():
     result = ""
