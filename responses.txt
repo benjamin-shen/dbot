@@ -1,0 +1,11 @@
+dbot help
+dbot info
+
+..dbot
+julia adolphe
+steve
+tour
+general
+werewolf
+fuck
+bitch
