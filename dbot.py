@@ -42,6 +42,7 @@ def webhook():
                         while len(text) > 1000: # handle character limit
                             send_message(text[:1000])
                             text = text[1000:]
+                            time.sleep(0.1)
                         send_message(text);
     
     return "ok", 200
