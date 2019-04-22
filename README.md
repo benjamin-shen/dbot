@@ -5,6 +5,11 @@ Written by Benjamin Shen
 All possible commands can be found in [response.txt](dictionaries/response.txt).  
 All recognized keywords can be found in [understandable.txt](dictionaries/understandable.txt).  
 
+### Future work
+Change "response" and "understandable" because they're really bad names.  
+Make it easier to debug.  
+Future ideas for the bot can be found in [todo.txt](developer/todo.txt).  
+
 ### Bugs
 There is an occasional delay in the bot's response.  
 The GroupMe on PC sometimes displays messages in the wrong order.  
@@ -12,7 +17,6 @@ The GroupMe on PC sometimes displays messages in the wrong order.
 ### Warnings
 If you are modifying the code, keep in mind that  
 - I use `eval()` in [dbot.py](dbot.py).  
-- there are `print()` statements in [commands.py](commands.py) for debugging.
 - some keywords/responses are inappropriate for the general public. Please keep in mind your target group.  
 
 ## Sources
