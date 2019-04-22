@@ -5,6 +5,7 @@ app = Flask(__name__)
 # dbot
 import commands as dbot
 import time
+time.sleep(1)
 dbot.send_message("Hello world! dbot is online.")
 
 # someone sends a message

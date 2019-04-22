@@ -85,8 +85,8 @@ def glozz(p):
             i = member.find('"')+1
             j = member.find('"', i)
             if i != -1 and j != -1:
-                result.append(member[i:j])
-        return random.choice(result)
+                result.append(member[:j])
+        return "No one:\n" + random.choice(result)
     else:
         return "Error: invalid parameter"
 
