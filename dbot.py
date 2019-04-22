@@ -1,11 +1,10 @@
-import time
-import random
-
+#flask
 from flask import Flask, request
 app = Flask(__name__)
 
 # dbot
 import commands as dbot
+import time
 
 # someone sends a message
 @app.route('/', methods=['POST'])
@@ -24,16 +23,16 @@ def webhook():
             return
     return "ok", 200
 
-# functions
+# bot functions
 def parse(msg): # breaks down user message
     words = msg.split(" ")
     words.pop(0) # remove call to dbot
-    responseArray = []
-    for key in dbot.responseDict.keys():
-        responseArray.append(key)
+    commandArray = []
+    for key in dbot.commandDict.keys():
+        commandArray.append(key)
     commands = []
     for word in words:
-        if word in responseArray:
+        if word in commandArray:
             commands.append(word)
     return commands
 def bot_commanded(commands):
@@ -51,9 +50,9 @@ def bot_understood(msg):
             if key=='dick' or key=='penis':
                 dbot.inches()
             else:
-                text = value
-                while len(text) > 1000: # handle character limit
-                    dbot.send_message(text[:1000])
-                    text = text[1000:]
+                result = value
+                while len(result) > 1000: # handle character limit
+                    dbot.send_message(result[:1000])
+                    result = result[1000:]
                     time.sleep(0.1)
-                dbot.send_message(text);
+                dbot.send_message(result);

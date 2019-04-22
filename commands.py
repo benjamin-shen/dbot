@@ -6,24 +6,24 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 # interpret text files
-responseDict = {}
-with open('dictionaries/response.txt', 'r') as file:
+commandDict = {}
+with open('dictionaries/commands.txt', 'r') as file:
     responseArray = file.readlines()
     for line in responseArray:
         colon = line.find(':')
         if colon != -1:
             keyword = line[:colon]
             response = line[colon+1:].strip() # remove white space
-            responseDict[keyword] = response
-understandableDict = {}
-with open('dictionaries/understandable.txt', 'r') as file:
-    understandableArray = file.readlines()
-    for line in understandableArray:
+            commandDict[keyword] = response
+keywordDict = {}
+with open('dictionaries/keywords.txt', 'r') as file:
+    keywordArray = file.readlines()
+    for line in keywordArray:
         colon = line.find(':')
         if colon != -1:
             keyword = line[:colon]
             response = line[colon+1:].strip() # remove white space
-            understandableDict[keyword] = response
+            keywordDict[keyword] = response
 
 # GroupMe functions
 def send_message(to_send):
@@ -38,7 +38,7 @@ def send_message(to_send):
 # response
 def help():
     result = ""
-    for key,value in responseDict.items():
+    for key,value in commandDict.items():
         result += "dbot " + key + " - " + value + "\n"
     send_message(result)
     return result
