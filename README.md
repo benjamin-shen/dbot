@@ -2,12 +2,9 @@
 Written by Benjamin Shen
 
 ## Functionality
-All possible commands can be found in [response.txt](dictionaries/response.txt).  
-All recognized keywords can be found in [understandable.txt](dictionaries/understandable.txt).  
+All possible commands can be found in [commands.txt](dictionaries/commands.txt).  
+All recognized keywords can be found in [keywords.txt](dictionaries/keywords.txt).  
 
-### Future work
-Change "response" and "understandable" because they're really bad names.  
-Make it easier to debug.  
 Future ideas for the bot can be found in [todo.txt](developer/todo.txt).  
 
 ### Bugs

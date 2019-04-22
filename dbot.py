@@ -45,7 +45,7 @@ def bot_commanded(commands):
             except:
                 dbot.send_message("Error: command not defined.")
 def bot_understood(msg):
-    for key,value in dbot.understandableDict.items():
+    for key,value in dbot.keywordDict.items():
         if key in msg:
             if key=='dick' or key=='penis':
                 dbot.inches()
