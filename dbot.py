@@ -45,7 +45,7 @@ def bot_commanded(commands):
         while i<length:
             command = commands[i]
             j = 1
-            if length==1 or commands[i+1][:1]!='-': # no parameters
+            if i+1==length or commands[i+1][:1]!='-': # no parameters
                 dbot.send_message(dbot.functions[command])
             else:
                 while i+j<length and commands[i+j][:1]=='-': # with parameters
