@@ -5,7 +5,6 @@ app = Flask(__name__)
 # dbot
 import commands as dbot
 import time
-dbot.send_message("Hello world! dbot is online.")
 
 # someone sends a message
 @app.route('/', methods=['POST'])
@@ -26,22 +25,19 @@ def webhook():
 
 # bot functions
 def parse(msg): # breaks down user message
-    words = msg.split(" ")
+    words = msg.split()
     words.pop(0) # remove call to dbot
-    commandArray = []
-    for key in dbot.commandDict.keys():
-        commandArray.append(key)
     commands = []
     i = 0
     while i<len(words):
         word = words[i]
-        if word in commandArray:
+        if word in dbot.commandDict.keys():
             commands.append(word)
-        elif word=='-':
+        elif word=='-' and i+1<len(words):
             param = word+words[i+1]
             if commands[-1]+param in dbot.functions.keys():
                 commands.append(param)
-                commands.pop(i+1)
+                words.pop(i+1)
         if word[:1]=='-' and commands[-1]+word in dbot.functions.keys():
             commands.append(word)
         i += 1
@@ -56,17 +52,18 @@ def bot_commanded(commands):
             command = commands[i]
             j = 1
             if i+1==length or commands[i+1][:1]!='-': # no parameters
-                dbot.send_message(dbot.functions[command])
+                dbot.send_message(dbot.functions[command]())
             else:
-                while i+j<length and commands[i+j][:1]=='-': # with parameters
-                    dbot.send_message(dbot.functions[command+commands[i+j]])
+                param = commands[i+j]
+                while i+j<length and param[:1]=='-': # with parameters
+                    dbot.send_message(dbot.functions[command+param]())
                     j += 1
             i += j
 def bot_understood(msg):
     for key,value in dbot.keywordDict.items():
         if key in msg:
             if key=='dick' or key=='penis':
-                dbot.inches()
+                dbot.send_message(dbot.inches())
             else:
                 result = value
                 while len(result) > 1000: # handle character limit

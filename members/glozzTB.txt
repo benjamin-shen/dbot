@@ -1,13 +1,13 @@
-Aidan: "I talk in Bronx when I'm drunk.", 19sp
-Ben D: "3, 4!", 18fa
-Ben S: "Get me fries.", 18fa
-Dubem: "No mk tonight, I'm playing smash.", 18fa
-Gabriel: "I can sing an octave lower than everyone.", 18fa
-Isaac:, 18fa
-Lucas C: "N ice.", 18fa
-Lucas G: "School is stressful, I have an upcoming test about hotel brands.", 18fa
-Nate: "J'ai des examens le mois prochain", 18fa
-Nick: "I used to be an adventurer like you, then I took a squash ball in the knee.", 18fa
-Quinn: "Why does no one remember me? I'm Quinn's girlfriend's boyfriend Quinn." Theobald, 18fa (deceased)
-Sam: "You know what they say...", 18fa
-Will:, 18fa
+Aidan: "I talk in Bronx when I'm drunk." // 19sp
+Ben D: "3, 4!" // 18fa
+Ben S: "Get me fries." // 18fa
+Dubem: "No mk tonight, I'm playing smash." // 18fa
+Gabriel: "I can sing an octave lower than everyone." // 18fa
+Isaac: // 18fa
+Lucas C: "N ice." // 18fa
+Lucas G: "School is stressful, I have an upcoming test about hotel brands." // 18fa
+Nate: "J'ai des examens le mois prochain." // 18fa
+Nick: "I used to be an adventurer like you, then I took a squash ball in the knee." // 18fa
+Quinn: "Why does no one remember me? I'm Quinn's girlfriend's boyfriend Quinn." // 18fa (deceased)
+Sam: "You know what they say..." // 18fa
+Will:// 18fa

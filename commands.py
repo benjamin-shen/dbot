@@ -47,48 +47,62 @@ def d_help():
 def info():
     result = "dbot is a GroupMe bot created by Ben Shen '22. The d stands for Douglas."
     return result
-def glozz(p):
+def glozz():
     glozz = []
     with open('members/glozzSA.txt', 'r') as file:
         glozzSA = file.readlines()
         for line in glozzSA:
             name = line.strip()
             if len(name) > 0: # verify name is valid
-                i = name.find(",")
+                i = name.find("//")
                 if i != -1:
-                    name = name[:i] # ignore post-comma text
+                    name = name[:i] # ignore comment
                 glozz.append(name)
     with open('members/glozzTB.txt', 'r') as file:
         glozzTB = file.readlines()
         for line in glozzTB:
             name = line.strip()
             if len(name) > 0: # verify name is valid
-                i = name.find(",")
+                i = name.find("//")
                 if i != -1:
-                    name = name[:i] # ignore post-comma text
+                    name = name[:i] # ignore comment
                 glozz.append(name)
+    return glozz
+def glozz_0():
     result = []
-    if p<3:
-        for member in glozz:
-            i = member.find(":")
-            if i != -1:
-                result.append(member[:i])
-            else:
-                result.append(member)
-        if p==1: # alphabetize
-            result.sort()
-        elif p==2: # randomize
-            random.shuffle(result)
-        return "\n".join(result)
-    elif p==3: # ism
-        for member in glozz:
-            i = member.find('"')
-            j = member.find('"', i+1)
-            if i != -1 and j != -1:
-                result.append(member[:j+1])
-        return "No one:\n" + random.choice(result)
-    else:
-        return "Error: invalid parameter"
+    for member in glozz():
+        i = member.find(":")
+        if i != -1:
+            result.append(member[:i])
+        else:
+            result.append(member)
+    return "\n".join(result)
+def glozz_1():
+    result = []
+    for member in glozz():
+        i = member.find(":")
+        if i != -1:
+            result.append(member[:i])
+        else:
+            result.append(member)
+    result.sort()
+    return "\n".join(result)
+def glozz_2():
+    result = []
+    for member in glozz():
+        i = member.find(":")
+        if i != -1:
+            result.append(member[:i])
+        else:
+            result.append(member)
+    random.shuffle(glozz)
+    return "\n".join(result)
+def glozz_3():
+    result = []
+    for member in glozz():
+        if (member.find('"') != -1):
+            result.append(member)
+    return "No one:\n" + random.choice(result)
 
 # special keywords
 def inches():
@@ -104,10 +118,10 @@ def inches():
 
 # function dictionary
 functions = {
-    "help": d_help(),
-    "info": info(),
-    "glozz": glozz(0),
-    "glozz-alphabetize": glozz(1),
-    "glozz-randomize": glozz(2),
-    "glozz-ism": glozz(3),
+    "help": d_help,
+    "info": info,
+    "glozz": glozz_0,
+    "glozz-alphabetize": glozz_1,
+    "glozz-randomize": glozz_2,
+    "glozz-ism": glozz_3,
 }

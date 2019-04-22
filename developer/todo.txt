@@ -1,5 +1,6 @@
 every time dbot is called, 1% chance aidan is kicked
 rpg game thing
+fetch bus times to 505
 tussle
 weather
 small chance spongebob mock
