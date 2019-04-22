@@ -30,10 +30,13 @@ def send_message(to_send):
     url  = 'https://api.groupme.com/v3/bots/post'
     data = {
         'bot_id' : os.getenv('GROUPME_BOT_ID'),
-        'text'   : to_send,
+        'text'   : to_send.strip(),
     }
-    request = Request(url, urlencode(data).encode())
-    json = urlopen(request).read().decode()
+    try:
+        request = Request(url, urlencode(data).encode())
+        json = urlopen(request).read().decode()
+    except:
+        print("Error: send failed.")
 
 # commands
 def help():
@@ -53,20 +56,24 @@ def glozz():
         for line in glozzSA:
             name = line.strip()
             if len(name) > 0: # verify name is valid
-                #ignore post-comma text
                 i = name.find(",")
-                name = name[:i]
-                members.push(name)
+                if i != -1:
+                    name = name[:i] # ignore post-comma text
+                glozz.append(name)
     with open('members/glozzTB.txt', 'r') as file:
         glozzTB = file.readlines()
         for line in glozzTB:
             name = line.strip()
             if len(name) > 0: # verify name is valid
-                members.push(name)
+                i = name.find(",")
+                if i != -1:
+                    name = name[:i] # ignore post-comma text
+                glozz.append(name)
     result = ""
     for member in glozz:
         result += member + "\n"
     send_message(result)
+    return result
 
 # special keywords
 def inches():
