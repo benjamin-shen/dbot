@@ -54,7 +54,7 @@ def bot_understood(msg):
                 while len(result) > 1000: # handle character limit
                     i = result[:1000].rfind(" ") # don't split a character
                     if i != -1:
-                        i++
+                        i += 1
                     else:
                         i = 1000
                     dbot.send_message(result[:i])

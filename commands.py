@@ -35,18 +35,40 @@ def send_message(to_send):
     request = Request(url, urlencode(data).encode())
     json = urlopen(request).read().decode()
 
-# response
+# commands
 def help():
     result = ""
     for key,value in commandDict.items():
-        result += "dbot " + key + " - " + value + "\n"
+        result += "dbot " + key + ": " + value + "\n"
     send_message(result)
     return result
 def info():
     result = "dbot is a GroupMe bot created by Ben Shen '22. The d stands for Douglas."
     send_message(result)
     return result
-# understandable
+def glozz():
+    glozz = []
+    with open('members/glozzSA.txt', 'r') as file:
+        glozzSA = file.readlines()
+        for line in glozzSA:
+            name = line.strip()
+            if len(name) > 0: # verify name is valid
+                #ignore post-comma text
+                i = name.find(",")
+                name = name[:i]
+                members.push(name)
+    with open('members/glozzTB.txt', 'r') as file:
+        glozzTB = file.readlines()
+        for line in glozzTB:
+            name = line.strip()
+            if len(name) > 0: # verify name is valid
+                members.push(name)
+    result = ""
+    for member in glozz:
+        result += member + "\n"
+    send_message(result)
+
+# special keywords
 def inches():
     length = random.randint(0,12)
     result = ""
