@@ -19,7 +19,7 @@ def webhook():
         if text.startswith('dbot'): # bot is explicitly called
             bot_commanded(parse(text))
         else: # bot understands something
-            bot_understood()
+            bot_understood(text)
         if False: # bot is implicitly called
             return
     return "ok", 200
@@ -45,7 +45,7 @@ def bot_commanded(commands):
                 eval("dbot." + command + "()")
             except:
                 dbot.send_message("Error: command not defined.")
-def bot_understood():
+def bot_understood(msg):
     for key,value in dbot.understandableDict.items():
         if key in text:
             if key=='dick' or key=='penis':
