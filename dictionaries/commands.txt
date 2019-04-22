@@ -1,4 +1,3 @@
 help: list the commands I know
 info: learn about me
-glozz: list members of GLOZZ
-[name]: glozz member isms
+glozz: list members of GLOZZ (-alphabetize, -randomize, -ism)

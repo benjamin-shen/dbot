@@ -25,3 +25,5 @@ aidan talks 10%: CORRECT.
 sanjeevani, quinn
 nate has exams
 dubem mk
+
+accept multiple parameters

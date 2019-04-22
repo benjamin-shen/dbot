@@ -39,17 +39,15 @@ def send_message(to_send):
         print("Error: send failed.")
 
 # commands
-def help():
+def d_help():
     result = ""
     for key,value in commandDict.items():
         result += "dbot " + key + ": " + value + "\n"
-    send_message(result)
     return result
 def info():
     result = "dbot is a GroupMe bot created by Ben Shen '22. The d stands for Douglas."
-    send_message(result)
     return result
-def glozz():
+def glozz(p):
     glozz = []
     with open('members/glozzSA.txt', 'r') as file:
         glozzSA = file.readlines()
@@ -69,11 +67,28 @@ def glozz():
                 if i != -1:
                     name = name[:i] # ignore post-comma text
                 glozz.append(name)
-    result = ""
-    for member in glozz:
-        result += member + "\n"
-    send_message(result)
-    return result
+    result = []
+    if p<3:
+        for member in glozz:
+            i = member.find(":")
+            if i != -1:
+                result.append(member[:i])
+            else:
+                result.append(member)
+        if p==1: # alphabetize
+            result.sort()
+        elif p==2: # randomize
+            random.shuffle(result)
+        return "\n".join(result)
+    elif p==3: # ism
+        for member in glozz:
+            i = member.find('"')+1
+            j = member.find('"', i)
+            if i != -1 and j != -1:
+                result.append(member[i:j])
+        return random.choice(result)
+    else:
+        return "Error: invalid parameter"
 
 # special keywords
 def inches():
@@ -85,5 +100,14 @@ def inches():
         result = str(length) + " inch"
     else:
         result = str(length) + " inches"
-    send_message(result)
     return result
+
+# function dictionary
+functions = {
+    "help": d_help(),
+    "info": info(),
+    "glozz": glozz(0),
+    "glozz-alphabetize": glozz(1),
+    "glozz-randomize": glozz(2),
+    "glozz-ism": glozz(3),
+}
