@@ -52,7 +52,8 @@ def bot_understood(msg):
             else:
                 result = value
                 while len(result) > 1000: # handle character limit
-                    dbot.send_message(result[:1000])
-                    result = result[1000:]
+                    i = result[:1000].rfind(" ") # end on a word
+                    dbot.send_message(result[:i])
+                    result = result[i:]
                     time.sleep(0.1)
                 dbot.send_message(result);
