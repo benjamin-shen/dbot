@@ -17,7 +17,7 @@ def webhook():
 
     if name != 'dbot':
         if text.startswith('dbot'): # bot is explicitly called
-            bot_commanded(parse(received_text))
+            bot_commanded(parse(text))
         else: # bot understands something
             bot_understood()
         if False: # bot is implicitly called
