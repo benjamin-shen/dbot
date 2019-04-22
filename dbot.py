@@ -37,17 +37,18 @@ def parse(msg): # breaks down user message
             commands.append(word)
     return commands
 def bot_commanded(commands):
-    if len(commands)==0:
+    length = len(commands)
+    if length==0:
         dbot.send_message("Try 'dbot help'.")
     else:
         i = 0
-        while i<len(commands):
+        while i<length:
             command = commands[i]
             j = 1
             if commands[i+1][:1]!='-': # no parameters
                 dbot.send_message(dbot.functions[command])
             else:
-                while commands[i+j][:1]=='-': # with parameters
+                while i+j<length and commands[i+j][:1]=='-': # with parameters
                     dbot.send_message(dbot.functions[command+commands[i+j]])
                     j += 1
             i += j
