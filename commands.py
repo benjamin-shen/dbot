@@ -82,10 +82,10 @@ def glozz(p):
         return "\n".join(result)
     elif p==3: # ism
         for member in glozz:
-            i = member.find('"')+1
-            j = member.find('"', i)
+            i = member.find('"')
+            j = member.find('"', i+1)
             if i != -1 and j != -1:
-                result.append(member[:j])
+                result.append(member[:j+1])
         return "No one:\n" + random.choice(result)
     else:
         return "Error: invalid parameter"

@@ -5,7 +5,6 @@ app = Flask(__name__)
 # dbot
 import commands as dbot
 import time
-time.sleep(1)
 dbot.send_message("Hello world! dbot is online.")
 
 # someone sends a message
@@ -33,9 +32,19 @@ def parse(msg): # breaks down user message
     for key in dbot.commandDict.keys():
         commandArray.append(key)
     commands = []
-    for word in words:
-        if word in commandArray or word[:1]=='-' and commands[-1]+word in dbot.functions.keys():
+    i = 0
+    while i<len(words):
+        word = words[i]
+        if word in commandArray:
             commands.append(word)
+        elif word=='-':
+            param = word+words[i+1]
+            if commands[-1]+param in dbot.functions.keys():
+                commands.append(param)
+                commands.pop(i+1)
+        if word[:1]=='-' and commands[-1]+word in dbot.functions.keys():
+            commands.append(word)
+        i += 1
     return commands
 def bot_commanded(commands):
     length = len(commands)
