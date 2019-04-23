@@ -7,10 +7,20 @@ All recognized keywords can be found in [keywords.txt](dictionaries/keywords.txt
 
 Future ideas for the bot can be found in [todo.txt](developer/todo.txt).  
 
+### Files
+[commands.py](commands.py): the actual instructions for each bot command.  
+[dbot.py](dbot.py): bot instructions for when someone in the group sends a message.  
+
+[Procfile](Profile): contains heroku dyno command.  
+[README.md](README.md): documentation for the bot.  
+[requirements.txt](requirements.txt): read for modules to be installed.  
+[runtime.txt](runtime.txt): version of python for heroku to interpret.  
+
 ## Sources
 Thanks to Dubem Ogwulumba for the name inspiration and helpful input on bot commands,  
-Collin Montag for creating mbot (MasterBot) and encouraging the creation of dbot, and  
-the rest of D Club and GLOZZ for participating in this project.
+Collin Montag for creating the legendary mbot (MasterBot),  
+Chris Umeki for encouraing and supporting this project,  
+the rest of D Club and GLOZZ for participating and having fun with dbot.
 
 ### Credit
 1. [This article by Joshua B](http://sweb.uky.edu/~jtba252/index.php/2017/09/13/how-to-write-a-groupme-bot-using-python/) helped me get accustomed to python and writing a locally hosted bot.  

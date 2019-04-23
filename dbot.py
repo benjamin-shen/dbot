@@ -6,7 +6,8 @@ app = Flask(__name__)
 import commands as dbot
 import time
 
-# someone sends a message
+# someone sends a message and it directs to heroku,
+# which hosts a server to interpret the data
 @app.route('/', methods=['POST'])
 def webhook():
     data = request.get_json()
