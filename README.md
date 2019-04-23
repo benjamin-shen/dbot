@@ -11,7 +11,7 @@ Future ideas for the bot can be found in [todo.txt](developer/todo.txt).
 [commands.py](commands.py): the actual instructions for each bot command.  
 [dbot.py](dbot.py): bot instructions for when someone in the group sends a message.  
 
-[Procfile](Profile): contains heroku dyno command.  
+[Procfile](Procfile): contains heroku dyno command.  
 [README.md](README.md): documentation for the bot.  
 [requirements.txt](requirements.txt): read for modules to be installed.  
 [runtime.txt](runtime.txt): version of python for heroku to interpret.  
@@ -19,7 +19,7 @@ Future ideas for the bot can be found in [todo.txt](developer/todo.txt).
 ## Sources
 Thanks to Dubem Ogwulumba for the name inspiration and helpful input on bot commands,  
 Collin Montag for creating the legendary mbot (MasterBot),  
-Chris Umeki for encouraing and supporting this project,  
+Chris Umeki for encouraging and supporting this project,  
 the rest of D Club and GLOZZ for participating and having fun with dbot.
 
 ### Credit
