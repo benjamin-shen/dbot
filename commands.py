@@ -71,14 +71,14 @@ def time():
         result += "Come to RPCC!\n"
     elif day==3:
         result += "Happy Wednesday!\n"
-    result += "It is currently " + hour+":"+min+" "+ampm+"."
+    result += "It is currently " + hour + ":" + min + " " + ampm + "."
     return result
 def time_1():
     result = ""
     now = datetime.now(pytz.timezone('US/Eastern'))
     day = now.strftime('%A')
     date = now.strftime('%x')
-    result += "Today is " + day + ", " + date
+    result += "Today is " + day + ", " + date + "."
     return result
 def dinner():
     result = ""
