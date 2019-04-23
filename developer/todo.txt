@@ -1,22 +1,21 @@
-every time dbot is called, 1% chance aidan is kicked
+dbot kick 30% kicks aidan
 rpg game thing
 fetch bus times to 505
 tussle
 weather
-small chance spongebob mock
-20% lucas's messages -> uwu
+1% spongebob mock
+1% lucas's messages -> uwu
 repeated messages, dbot repeats message
 asshole -> name is a horse's ass
-5% -> Yeah tour! x5
-dbot [name] ism
+5% -> Yeah tour! x5 Malfunctioning...
 dbot [nickname] -> gives user their nickname
 name in conversation -> 50/50 smash or pass (100% for robert)
 
-nate talks 10%: Careful, that's Natebot.
-dubem talks 10%: We have [randomint]/4 voice parts.
-ben talks 10%: Yes Daddy.
-lucas talks 10%: Yoshi!
-aidan talks 10%: CORRECT.
+nate talks 5%: Careful, that's Natebot.
+dubem talks 5%: We have [randomint]/4 voice parts.
+ben talks 5%: Yes Daddy.
+lucas talks 5%: Yoshi!
+aidan talks 5%: CORRECT.
 
 
 
