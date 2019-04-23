@@ -1,7 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
 
-
 def next():
     time = ""
     url = requests.get('https://realtimetcatbus.availtec.com/InfoPoint/Stops/Stop/1701')
