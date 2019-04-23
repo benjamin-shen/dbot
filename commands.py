@@ -80,12 +80,12 @@ def time_1():
     result += "Today is " + day + ", " + date
 def dinner():
     result = ""
-    halls = ['RPCC','Appel','Risley','Okenshields','Becker','Cook','Keeton','Rose']
+    halls = ['RPCC','Appel','Risley','Okenshields','Becker','Bethe','Cook','Keeton','Rose']
     result += random.choice(halls)
     return result
 def dinner_1():
     result = ""
-    halls = ['Becker','Cook','Keeton','Rose']
+    halls = ['Becker','Bethe','Cook','Keeton','Rose']
     result += random.choice(halls)
     return result
 def glozz():
