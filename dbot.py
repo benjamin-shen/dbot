@@ -35,12 +35,12 @@ def parse(msg): # breaks down user message
             commands.append(word)
         if len(commands)>0:
             # deal with parameters
-            elif word=='-' and i+1<len(words):
+            if word=='-' and i+1<len(words):
                 param = word+words[i+1]
                 if commands[-1]+param in dbot.functions.keys():
                     commands.append(param)
                     words.pop(i+1)
-            if word[:1]=='-' and commands[-1]+word in dbot.functions.keys():
+            elif word[:1]=='-' and commands[-1]+word in dbot.functions.keys():
                 commands.append(word)
         i += 1
     return commands
