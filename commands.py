@@ -44,7 +44,7 @@ def send_message(to_send):
 def d_help():
     result = ""
     for key,value in commandDict.items():
-        result += "dbot " + key + ": " + value + "\n"
+        result += "dbot " + key + ": " + value + "\n\n"
     return result
 def d_help_1():
     result = "'[command] -[parameter]' or '[command] - [parameter]' executes the command with a parameter. Invalid syntax is ignored. Invalid parameters are ignored.\n"
@@ -79,6 +79,7 @@ def time_1():
     day = now.strftime('%A')
     date = now.strftime('%x')
     result += "Today is " + day + ", " + date
+    return result
 def dinner():
     result = ""
     halls = ['RPCC','Appel','Risley','Okenshields','Becker','Bethe','Cook','Keeton','Rose']
