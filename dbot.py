@@ -63,7 +63,7 @@ def bot_commanded(commands):
 def bot_understood(msg):
     for key,value in dbot.keywordDict.items():
         if key in msg:
-            if key=='dick' or key=='penis':
+            if key=='penis' or key=='dick' or key=='cock':
                 dbot.send_message(dbot.inches())
             else:
                 result = value
