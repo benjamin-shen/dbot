@@ -33,6 +33,7 @@ def parse(msg): # breaks down user message
         word = words[i]
         if word in dbot.commandDict.keys():
             commands.append(word)
+        # deal with parameters
         elif word=='-' and i+1<len(words):
             param = word+words[i+1]
             if commands[-1]+param in dbot.functions.keys():

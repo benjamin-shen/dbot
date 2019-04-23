@@ -1,4 +1,5 @@
 import random
+import datetime
 
 import os
 import json
@@ -107,13 +108,16 @@ def glozz_3():
 # special keywords
 def inches():
     length = random.randint(0,12)
-    result = ""
+    result = "("
     if length==0:
-        result = "vagina"
+        result += "so small it can't be detected by an electron microscope"
+    elif length==12:
+        result += "ever deepthroat a footlong?"
     elif length==1:
-        result = str(length) + " inch"
+        result += str(length) + " inch"
     else:
-        result = str(length) + " inches"
+        result += str(length) + " inches"
+    result += ")"
     return result
 
 # function dictionary
