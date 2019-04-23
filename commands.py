@@ -1,5 +1,6 @@
 import random
-import datetime
+from datetime import datetime
+import pytz
 
 import os
 import json
@@ -61,7 +62,7 @@ def info_1():
     return result
 def time():
     result = ""
-    now = datetime.datetime.now()
+    now = datetime.now(pytz.timezone('US/Eastern'))
     day = now.strftime('%w')
     hour = now.strftime('%I')
     min = now.strftime('%M')
@@ -74,7 +75,7 @@ def time():
     return result
 def time_1():
     result = ""
-    now = datetime.datetime.now()
+    now = datetime.now(pytz.timezone('US/Eastern'))
     day = now.strftime('%A')
     date = now.strftime('%x')
     result += "Today is " + day + ", " + date
