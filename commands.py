@@ -59,6 +59,35 @@ def info():
 def info_1():
     result = "dbot is created and managed by Benjamin Shen '22."
     return result
+def time():
+    result = ""
+    now = datetime.datetime.now()
+    day = now.strftime('%w')
+    hour = now.strftime('%I')
+    min = now.strftime('%M')
+    ampm = now.strftime('%p')
+    if day==2 and 4<int(hour) and int(hour)<8:
+        result += "Come to RPCC!\n"
+    elif day==3:
+        result += "Happy Wednesday!\n"
+    result += "It is currently " + hour+":"+min+" "+ampm+"."
+    return result
+def time_1():
+    result = ""
+    now = datetime.datetime.now()
+    day = now.strftime('%A')
+    date = now.strftime('%x')
+    result += "Today is " + day + ", " + date
+def dinner():
+    result = ""
+    halls = ['RPCC','Appel','Risley','Okenshields','Becker','Cook','Keeton','Rose']
+    result += random.choice(halls)
+    return result
+def dinner_1():
+    result = ""
+    halls = ['Becker','Cook','Keeton','Rose']
+    result += random.choice(halls)
+    return result
 def glozz():
     glozz = []
     with open('members/glozzSA.txt', 'r') as file:
@@ -138,6 +167,10 @@ functions = {
     "help-github": d_help_2,
     "info": info,
     "info-creator": info_1,
+    "time": time,
+    "time-day": time_1,
+    "dinner": dinner,
+    "dinner-west": dinner_1,
     "glozz": glozz_0,
     "glozz-alphabetize": glozz_1,
     "glozz-randomize": glozz_2,

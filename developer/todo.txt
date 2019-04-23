@@ -19,6 +19,8 @@ aidan talks 5%: CORRECT.
 
 
 10 likes on message - celebrate
-rd or dinner -> create poll
 
-accept multiple parameters
+reginald: mar 5, 2019
+
+rd -> create poll
+dinner-paid

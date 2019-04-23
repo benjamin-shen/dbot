@@ -1,3 +1,5 @@
 help: list the commands I know (-syntax)
 info: learn about me (-creator)
+time: interpret current time (-day)
+dinner: choose a random dining hall (-west)
 glozz: list members of GLOZZ (-alphabetize, -randomize)
