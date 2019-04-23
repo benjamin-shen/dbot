@@ -11,8 +11,9 @@ Future ideas for the bot can be found in [todo.txt](developer/todo.txt).
 [commands.py](commands.py): the actual instructions for each bot command.  
 [dbot.py](dbot.py): bot instructions for when someone in the group sends a message.  
 
+[LICENSE](LICENSE): MIT License.  
 [Procfile](Procfile): contains heroku dyno command.  
-[README.md](README.md): documentation for the bot.  
+[README.md](README.md): explanations and documentation for the bot.  
 [requirements.txt](requirements.txt): read for modules to be installed.  
 [runtime.txt](runtime.txt): version of python for heroku to interpret.  
 
