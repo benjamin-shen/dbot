@@ -1,7 +1,6 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
-*.ini
 
 # C extensions
 *.so
@@ -9,3 +8,7 @@ __pycache__/
 # Django stuff:
 *.log
 *.pot
+
+# Other
+*.ini
+developer/

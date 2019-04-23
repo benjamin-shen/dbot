@@ -5,8 +5,6 @@ Written by Benjamin Shen
 All possible commands can be found in [commands.txt](dictionaries/commands.txt).  
 All recognized keywords can be found in [keywords.txt](dictionaries/keywords.txt).  
 
-Future ideas for the bot can be found in [todo.txt](developer/todo.txt).  
-
 ### Files
 [commands.py](commands.py): the actual instructions for each bot command.  
 [dbot.py](dbot.py): bot instructions for when someone in the group sends a message.  
