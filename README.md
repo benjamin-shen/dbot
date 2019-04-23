@@ -7,15 +7,6 @@ All recognized keywords can be found in [keywords.txt](dictionaries/keywords.txt
 
 Future ideas for the bot can be found in [todo.txt](developer/todo.txt).  
 
-### Bugs
-There is an occasional delay in the bot's response.  
-The GroupMe on PC sometimes displays messages in the wrong order.  
-
-### Warnings
-If you are modifying the code, keep in mind that  
-- I use `eval()` in [dbot.py](dbot.py).  
-- some keywords/responses are inappropriate for the general public. Please keep in mind your target group.  
-
 ## Sources
 Thanks to Dubem Ogwulumba for the name inspiration and helpful input on bot commands,  
 Collin Montag for creating mbot (MasterBot) and encouraging the creation of dbot, and  
