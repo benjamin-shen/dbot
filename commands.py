@@ -45,8 +45,19 @@ def d_help():
     for key,value in commandDict.items():
         result += "dbot " + key + ": " + value + "\n"
     return result
+def d_help_1():
+    result = "'[command] -[parameter]' or '[command] - [parameter]' executes the command with a parameter. Invalid syntax is ignored. Invalid parameters are ignored.\n"
+    result += "dbot can only recognize one parameter per command.\n"
+    result += "Keywords, regardless of white space, will trigger dbot to respond. Try to discover them all! The list of understood keywords is updated frequently."
+    return result
+def d_help_2():
+    result = "https://github.com/benjamin-shen/dubembot"
+    return result
 def info():
-    result = "dbot is a GroupMe bot created by Ben Shen '22. The d stands for Douglas."
+    result = "dbot is a GroupMe bot that responds to commands and recognizes keywords. The d stands for Douglas."
+    return result
+def info_1():
+    result = "dbot is created and managed by Benjamin Shen '22."
     return result
 def glozz():
     glozz = []
@@ -123,7 +134,10 @@ def inches():
 # function dictionary
 functions = {
     "help": d_help,
+    "help-syntax": d_help_1,
+    "help-github": d_help_2,
     "info": info,
+    "info-creator": info_1,
     "glozz": glozz_0,
     "glozz-alphabetize": glozz_1,
     "glozz-randomize": glozz_2,

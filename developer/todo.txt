@@ -1,4 +1,4 @@
-dbot kick 30% kicks aidan
+dbot snap
 rpg game thing
 fetch bus times to 505
 tussle
@@ -18,8 +18,7 @@ lucas talks 5%: Yoshi!
 aidan talks 5%: CORRECT.
 
 
-
-
+10 likes on message - celebrate
 rd or dinner -> create poll
 
 accept multiple parameters
