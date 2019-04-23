@@ -90,6 +90,17 @@ def dinner_1():
     halls = ['Becker','Bethe','Cook','Keeton','Rose']
     result += random.choice(halls)
     return result
+from bus import stop1701
+def bus():
+    result = ""
+    time = stop1701.next()
+    if time==None:
+        result += "https://realtimetcatbus.availtec.com/InfoPoint/Stops/Stop/1701 is down."
+    elif time=='':
+        result += "No 90 buses anytime soon. Try Google Maps."
+    else:
+        result += "The next 90 is at " + time + "."
+    return result
 def glozz():
     glozz = []
     with open('members/glozzSA.txt', 'r') as file:
@@ -173,6 +184,7 @@ functions = {
     "time-day": time_1,
     "dinner": dinner,
     "dinner-west": dinner_1,
+    "bus": bus,
     "glozz": glozz_0,
     "glozz-alphabetize": glozz_1,
     "glozz-randomize": glozz_2,

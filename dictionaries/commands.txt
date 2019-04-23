@@ -2,4 +2,5 @@ help: list the commands I know (-syntax)
 info: learn about me (-creator)
 time: interpret current time (-day)
 dinner: choose a random dining hall (-west)
+bus: give the next bus time for the 90 from 505 to North
 glozz: list members of GLOZZ (-alphabetize, -randomize)
