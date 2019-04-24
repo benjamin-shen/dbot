@@ -1,5 +1,6 @@
 # dbot
 import random
+import time
 from datetime import datetime
 import pytz
 import requests
@@ -67,13 +68,38 @@ def last_message(str):
         result += msg['name']
     elif str=='id':
         result += msg['sender_id']
+    elif str=='membership':
+        result += msg['id']
     elif str=="text":
         result += msg['text']
     else:
         result += "Error: couldn't handle request"
     return result
+def get_members():
+    vars()
+    sent = ""
+    members = requests.get('https://api.groupme.com/v3/groups/'+group_id+'?'+access_token).json()['response']['members']
+    return members
+def get_memberids():
+    result = {}
+    members = get_members()
+    for member in members:
+        id = member['id']
+        nickname = member['nickname']
+        user_id = member['user_id']
+        result[nickname] = {'id':id,'user_id':id}
+    return result
+def kick_member(id):
+    vars()
+    requests.post('https://api.groupme.com/v3/groups/'+group_id+'/members/'+id+'/remove?'+access_token)
+    return 'kicked'
+def add_member(name,id):
+    vars()
+    data = {'members':[{'nickname':name,'user_id':id}]}
+    requests.post('https://api.groupme.com/v3/groups/'+group_id+'/members/add?'+access_token, json=data)
+    return 'added'
 
-# commands
+# basic commands
 def d_help():
     result = ""
     for key,value in commandDict.items():
@@ -203,21 +229,6 @@ def glozz_4():
             result.append(member)
     return "No one:\n" + random.choice(result)
 
-# special keywords
-def inches():
-    length = random.randint(0,12)
-    result = "("
-    if length==0:
-        result += "so small it can't be detected by an electron microscope"
-    elif length==12:
-        result += "ever deepthroat a footlong?"
-    elif length==1:
-        result += str(length) + " inch"
-    else:
-        result += str(length) + " inches"
-    result += ")"
-    return result
-
 # function dictionary
 functions = {
     "help": d_help,
@@ -237,6 +248,35 @@ functions = {
     "glozz-single": glozz_3,
     "glozz-ism": glozz_4,
 }
+
+# other commands
+def inches():
+    length = random.randint(0,12)
+    result = "("
+    if length==0:
+        result += "so small it can't be detected by an electron microscope"
+    elif length==12:
+        result += "ever deepthroat a footlong?"
+    elif length==1:
+        result += str(length) + " inch"
+    else:
+        result += str(length) + " inches"
+    result += ")"
+    return result
+def tussle(tusslee):
+    nickname = tusslee[1:]
+    if nickname in get_memberids().keys():
+        id = get_memberids()[nickname][id]
+        user_id = get_memberids()[nickname][id]
+        try:
+            kick_member(id)
+            send_message("*surprised pikachu face*")
+            add_member(nickname,user_id)
+        except:
+            return 'invalid'
+    else:
+        send_message("Bad tussle :()")
+    return 'ok'
 
 # implicit commands
 def dclub():

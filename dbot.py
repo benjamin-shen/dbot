@@ -58,15 +58,24 @@ def bot_commanded(commands):
         i = 0
         while i<length:
             command = commands[i]
-            j = 1
-            if i+1==length or commands[i+1][:1]!='-': # no parameters
-                dbot.send_message(dbot.functions[command]())
+            if command=='tussle':
+                if i+1<length:
+                    dbot.tussle(commands[i+1])
+                    command.pop(i).pop(i)
+                else:
+                    dbot.send_message("You can't tussle air!")
+                    command.pop(i)
+                length = len(commands)
             else:
-                param = commands[i+j]
-                while i+j<length and param[:1]=='-': # with parameters
-                    dbot.send_message(dbot.functions[command+param]())
-                    j += 1
-            i += j
+                j = 1
+                if i+1==length or commands[i+1][:1]!='-': # no parameters
+                    dbot.send_message(dbot.functions[command]())
+                else:
+                    param = commands[i+j]
+                    while i+j<length and param[:1]=='-': # with parameters
+                        dbot.send_message(dbot.functions[command+param]())
+                        j += 1
+                i += j
 def bot_understood(keyword):
     if keyword=='penis' or keyword=='dick' or keyword=='cock':
         dbot.send_message(dbot.inches())
