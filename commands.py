@@ -185,9 +185,18 @@ def glozz_2():
             result.append(member[:i])
         else:
             result.append(member)
-    random.shuffle(glozz)
+    random.shuffle(result)
     return "\n".join(result)
 def glozz_3():
+    result = []
+    for member in glozz():
+        i = member.find(":")
+        if i != -1:
+            result.append(member[:i])
+        else:
+            result.append(member)
+    return random.choice(result)
+def glozz_4():
     result = []
     for member in glozz():
         if (member.find('"') != -1):
@@ -225,7 +234,8 @@ functions = {
     "glozz": glozz_0,
     "glozz-alphabetize": glozz_1,
     "glozz-randomize": glozz_2,
-    "glozz-ism": glozz_3,
+    "glozz-single": glozz_3,
+    "glozz-ism": glozz_4,
 }
 
 # implicit commands
