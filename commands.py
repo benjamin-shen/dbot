@@ -297,8 +297,17 @@ def tussle(participants):
     memberids = get_memberids()
     initiator = 'a ghost'
     initiatorid = last_message('user_id')
+    master = 'Benjamin Shen'
     for nickname,ids in memberids.items():
-        if ids['user_id']==initiatorid:
+        if ids['user_id']=='62752724': # bot owner can't be kicked!
+            master = nickname
+            i = 0
+            while i<len(tusslers):
+                if tusslers[i]==master:
+                    tusslers.pop(i)
+                else:
+                    i += 1
+        elif ids['user_id']==initiatorid:
             initiator = nickname
             tusslers.append(nickname)
     random.shuffle(tusslers)
@@ -308,7 +317,7 @@ def tussle(participants):
             id = member['id']
             user_id = member['user_id']
             if user_id==initiatorid:
-                send_message(nickname + " hurt themselves in their confusion!")
+                send_message(nickname + ", you hurt yourself in your confusion!")
             else:
                 send_message(nickname + " was bested by " + initiator + ".")
             kick_member(id)
