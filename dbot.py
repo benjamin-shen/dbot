@@ -20,7 +20,7 @@ def webhook():
             bot_commanded(parse(text))
             return
         for key,value in dbot.keywordDict.items():
-            if key in msg: # bot understands something
+            if key in text: # bot understands something
                 bot_understood(key)
                 return
         # bot is implicitly called
