@@ -24,9 +24,10 @@ def webhook():
                 bot_understood(key)
                 return
         # bot is implicitly called
+        dclub()
         return
     elif data['sender_id'] != os.getenv('GROUPME_DBOT'): # dbot imposter
-        bot.send_message("Who are you?!")
+        dbot.send_message("Who are you?!")
 
 # text functions
 def parse(msg): # breaks down user message

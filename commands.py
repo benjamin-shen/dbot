@@ -227,3 +227,22 @@ functions = {
     "glozz-randomize": glozz_2,
     "glozz-ism": glozz_3,
 }
+
+# implicit commands
+def dclub():
+    result = ""
+    chance = random.randint(1,100)
+    if chance<=5:
+        id = last_message('id')
+        if id=='43405903': # Dubem
+            result += "We have " + random.randint(1,4) " out of 4 voice parts."
+        elif id=='62752724': # Benjamin
+            result += "Daddy made me say this."
+        elif id=='49904547': # Lucas
+            result += "Yoshi!"
+        elif id=='26134002': # Nate
+            result += "Careful, that's Natebot."
+        elif id=='43418465': # Aidan
+            result += "CORRECT."
+    if result != "":
+        return result
