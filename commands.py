@@ -50,17 +50,17 @@ with open('dictionaries/keywords.txt', 'r') as file:
 def send_message(to_send):
     time.sleep(1)
     vars()
-    url  = 'https://api.groupme.com/v3/bots/post'
+    url  = 'https://api.groupme.com/v3/bots/post?token=' + access_token
     data = {
         'bot_id' : bot_id,
         'text'   : to_send.strip(),
     }
-    requests.post(url+'?token='+access_token, json=data)
+    requests.post(url, json=data)
     return to_send
 def get_messages():
     vars()
-    sent = ""
-    messages = requests.get('https://api.groupme.com/v3/groups/'+group_id+'/messages?token='+access_token).json()['response']['messages']
+    url = 'https://api.groupme.com/v3/groups/'+group_id+'/messages?token='+access_token
+    messages = requests.get(url).json()['response']['messages']
     return messages # list of dictionaries; last 20 messages
 def last_message(key):
     result = ""
@@ -72,8 +72,8 @@ def last_message(key):
     return result
 def get_members():
     vars()
-    sent = ""
-    members = requests.get('https://api.groupme.com/v3/groups/'+group_id+'?token='+access_token).json()['response']['members']
+    url = 'https://api.groupme.com/v3/groups/'+group_id+'?token='+access_token
+    members = requests.get(url).json()['response']['members']
     return members
 def get_memberids():
     result = {}
@@ -87,20 +87,22 @@ def get_memberids():
 def kick_member(memberid):
     time.sleep(2)
     vars()
+    url = 'https://api.groupme.com/v3/groups/'+group_id+'/members/'+memberid+'/remove?token='+access_token
     data = {
         'membership_id': memberid,
     }
-    requests.post('https://api.groupme.com/v3/groups/'+group_id+'/members/'+memberid+'/remove?token='+access_token, json=data)
+    requests.post(url, json=data)
 def add_member(nickname,userid):
     time.sleep(2)
     vars()
+    url = 'https://api.groupme.com/v3/groups/'+group_id+'/members/add?token='+access_token
     data = {
         'members': [{
             'nickname': nickname,
             'user_id':  userid,
         }]
     }
-    requests.post('https://api.groupme.com/v3/groups/'+group_id+'/members/add?token='+access_token, json=data)
+    requests.post(url, json=data)
 
 # basic commands
 def d_help():
