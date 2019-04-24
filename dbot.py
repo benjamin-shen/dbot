@@ -20,7 +20,7 @@ def webhook():
             return 'ok'
         for key in dbot.keywordDict.keys():
             msgdata = remove_mentions(text)
-            if key in msgdata[0] and not key in msgdata[2]: # bot understands something
+            if key in msgdata[0] and not (key in msgdata[2]): # bot understands something
                 bot_understood(key)
         return 'ok'
         # bot is implicitly called
