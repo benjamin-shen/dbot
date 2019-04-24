@@ -44,11 +44,7 @@ def parse(msg): # breaks down user message
     while i<len(words):
         word = words[i]
         if word=='tussle':
-            if len(mentioned)>0:
-                dbot.tussle(mentioned)
-            else:
-                dbot.send_message("You can't tussle air!")
-            length = len(commands)
+            dbot.tussle(mentioned)
         if word in dbot.commandDict.keys():
             commands.append(word)
         if len(commands)>0:
@@ -72,19 +68,17 @@ def bot_commanded(commands):
             j = 1
             command = commands[i]
             if i+1==length or commands[i+1][:1]!='-': # no parameters
-                result = dbot.functions[command]()
-                if command != 'tussle':
-                    dbot.send_message(result)
+                dbot.functions[command]()
             else:
                 param = commands[i+j]
                 while i+j<length and param[:1]=='-': # with parameters
-                    dbot.send_message(dbot.functions[command+param]())
+                    dbot.functions[command+param]()
                     j += 1
             i += j
     return 'ok'
 def bot_understood(keyword):
     if keyword=='penis' or keyword=='dick' or keyword=='cock':
-        dbot.send_message(dbot.inches())
+        dbot.inches()
     else:
         result = dbot.keywordDict[keyword]
         while len(result) > 1000: # handle character limit

@@ -109,23 +109,29 @@ def d_help():
     result = ""
     for key,value in commandDict.items():
         result += "dbot " + key + ": " + value + "\n\n"
+    send_message(result)
     return result
 def d_help_1():
     result = "'[command] -[parameter]' or '[command] - [parameter]' executes the command with a parameter. Invalid syntax is ignored. Invalid parameters are ignored.\n"
     result += "dbot can only recognize one parameter per command.\n"
     result += "Keywords, regardless of white space, will trigger dbot to respond. Try to discover them all! The list of understood keywords is updated frequently."
+    send_message(result)
     return result
 def d_help_2():
     result = "https://github.com/benjamin-shen/dbot"
+    send_message(result)
     return result
 def info():
     result = "dbot is a GroupMe bot that responds to commands and recognizes keywords. The d stands for Douglas."
+    send_message(result)
     return result
 def info_1():
     result = "dbot is created and managed by Benjamin Shen '22."
+    send_message(result)
     return result
 def hello():
     result = "Hello, " + last_message('name') + "."
+    send_message(result)
     return result
 def time_0():
     result = ""
@@ -139,6 +145,7 @@ def time_0():
     elif day==3:
         result += "Happy Wednesday!\n"
     result += "It is currently " + hour + ":" + min + " " + ampm + "."
+    send_message(result)
     return result
 def time_1():
     result = ""
@@ -146,16 +153,19 @@ def time_1():
     day = now.strftime('%A')
     date = now.strftime('%x')
     result += "Today is " + day + ", " + date + "."
+    send_message(result)
     return result
 def dinner():
     result = ""
     halls = ['RPCC','Appel','Risley','Okenshields','Becker','Bethe','Cook','Keeton','Rose']
     result += random.choice(halls)
+    send_message(result)
     return result
 def dinner_1():
     result = ""
     halls = ['Becker','Bethe','Cook','Keeton','Rose']
     result += random.choice(halls)
+    send_message(result)
     return result
 from bus import stop1701
 def bus():
@@ -167,6 +177,7 @@ def bus():
         result += "No 90 buses anytime soon. Try Google Maps."
     else:
         result += "The next 90 is at " + time + "."
+    send_message(result)
     return result
 def glozz():
     glozz = []
@@ -190,51 +201,61 @@ def glozz():
                 glozz.append(name)
     return glozz
 def glozz_0():
-    result = []
+    members = []
     for member in glozz():
         i = member.find(":")
         if i != -1:
-            result.append(member[:i])
+            members.append(member[:i])
         else:
-            result.append(member)
-    return "\n".join(result)
+            members.append(member)
+    result = "\n".join(members)
+    send_message(result)
+    return result
 def glozz_1():
-    result = []
+    members = []
     for member in glozz():
         i = member.find(":")
         if i != -1:
-            result.append(member[:i])
+            members.append(member[:i])
         else:
-            result.append(member)
-    result.sort()
-    return "\n".join(result)
+            members.append(member)
+    members.sort()
+    result = "\n".join(members)
+    send_message(result)
+    return result
 def glozz_2():
-    result = []
+    members = []
     for member in glozz():
         i = member.find(":")
         if i != -1:
-            result.append(member[:i])
+            members.append(member[:i])
         else:
-            result.append(member)
-    random.shuffle(result)
-    return "\n".join(result)
+            members.append(member)
+    random.shuffle(members)
+    result = "\n".join(members)
+    send_message(result)
+    return result
 def glozz_3():
-    result = []
+    members = []
     for member in glozz():
         i = member.find(":")
         if i != -1:
-            result.append(member[:i])
+            members.append(member[:i])
         else:
-            result.append(member)
-    return random.choice(result)
+            members.append(member)
+    result = random.choice(members)
+    send_message(result)
+    return result
 def glozz_4():
-    result = []
+    isms = []
     for member in glozz():
         if (member.find('"') != -1):
-            result.append(member)
-    return "No one:\n" + random.choice(result)
+            isms.append(member)
+    result = "No one:\n" + random.choice(isms)
+    send_message(result)
+    return result
 def tussle_0():
-    result = "TUSSLE!"
+    result = ""
     return result
 
 # function dictionary
@@ -271,6 +292,7 @@ def inches():
     else:
         result += str(length) + " inches"
     result += ")"
+    send_message(result)
     return result
 def tussle(participants):
     tusslers = participants
@@ -281,10 +303,9 @@ def tussle(participants):
             id = get_memberids()[nickname]['id']
             user_id = get_memberids()[nickname]['user_id']
             kick_member(id)
-            time.sleep(1)
+            time.sleep(5)
             add_member(nickname,user_id)
             return 'ok'
-    send_message("Bad tussle :(")
     return 'error'
 
 # implicit commands
@@ -305,4 +326,5 @@ def dclub():
             result += "CORRECT."
     if result != "":
         # send_message(result)
-        return result
+        send_message(result)
+    return result
