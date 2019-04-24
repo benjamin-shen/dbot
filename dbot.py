@@ -48,12 +48,8 @@ def parse(text): # breaks down user message
     i = 0
     while i<len(words):
         word = words[i]
-        if word=='tussle':
-            if dbot.tussle(mentioned):
-                words.pop(i)
-            else:
-                commands.append(word)
-                i += 1
+        if word=='tussle' and dbot.tussle(mentioned):
+            commands.append(word)
         else:
             if word in dbot.commandDict.keys():
                 commands.append(word)
@@ -66,12 +62,13 @@ def parse(text): # breaks down user message
                         words.pop(i+1)
                 elif word[:1]=='-' and commands[-1]+word in dbot.functions.keys():
                     commands.append(word)
-            i += 1
+        i += 1
     return commands
 def bot_commanded(commands):
     length = len(commands)
-    if length==0 or length>0 and all(command=='tussle' for command in commands):
+    if length==0:
         dbot.send_message("Try 'dbot help'.")
+        return 'ok'
     i = 0
     while i<length:
         j = 1

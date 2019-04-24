@@ -325,6 +325,7 @@ def tussle(participants):
             kick_member(id)
             add_member(nickname,user_id)
             return True
+    send_message("Try 'dbot help'.")
     return False
 
 # implicit commands
