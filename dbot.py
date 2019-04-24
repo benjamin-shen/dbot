@@ -91,5 +91,4 @@ def bot_understood(keyword):
             dbot.send_message(result[:i])
             result = result[i:]
         dbot.send_message(result);
-    print('keyword understood')
     return 'ok'

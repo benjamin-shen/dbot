@@ -296,16 +296,24 @@ def inches():
     return result
 def tussle(participants):
     tusslers = participants
-    tusslers.append(last_message('nickname'))
+    memberids = get_memberids()
+    initiator = 'a ghost'
+    initiatorid = last_message('user_id')
+    for nickname,ids in memberids.items():
+        if ids[user_id]==initiatorid:
+            initiator = nickname
+            tusslers.append(nickname)
     random.shuffle(tusslers)
-    print(tusslers)
     for nickname in tusslers:
-        if nickname in get_memberids().keys(): # verify valid mentions
-            member = get_memberids()[nickname]
+        if nickname in memberids.keys(): # verify valid mentions
+            member = memberids[nickname]
             id = member['id']
             user_id = member['user_id']
             kick_member(id)
-            send_message(nickname + " is a horse's ass!")
+            if user_id==initiatorid:
+                send_message(nickname + " hurt themselves in their confusion!")
+            else:
+                send_message(nickname + " was bested by " + initiator + ".")
             time.sleep(5)
             add_member(nickname,user_id)
             return True
