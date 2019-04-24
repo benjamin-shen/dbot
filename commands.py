@@ -255,7 +255,8 @@ def glozz_4():
     send_message(result)
     return result
 def tussle_0():
-    result = ""
+    result = "Tussle attempted."
+    send_message(result)
     return result
 
 # function dictionary
