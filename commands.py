@@ -235,7 +235,7 @@ def dclub():
     if chance<=5:
         id = last_message('id')
         if id=='43405903': # Dubem
-            result += "We have " + random.randint(1,4) " out of 4 voice parts."
+            result += "We have " + str(random.randint(1,4)) + " out of 4 voice parts."
         elif id=='62752724': # Benjamin
             result += "Daddy made me say this."
         elif id=='49904547': # Lucas
