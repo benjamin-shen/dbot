@@ -242,7 +242,9 @@ def glozz_4():
         if (member.find('"') != -1):
             result.append(member)
     return "No one:\n" + random.choice(result)
-
+def tussle_0():
+    result = "A tussle has occurred!"
+    return result
 # function dictionary
 functions = {
     "help": d_help,
@@ -261,6 +263,7 @@ functions = {
     "glozz-randomize": glozz_2,
     "glozz-single": glozz_3,
     "glozz-ism": glozz_4,
+    "tussle": tussle_0,
 }
 
 # other commands
@@ -278,20 +281,21 @@ def inches():
     result += ")"
     return result
 def tussle(participants):
-    fighters = participants
-    fighters.append(last_message('nickname'))
-    if nickname in get_memberids().keys(): # verify valid mentions
-        id = get_memberids()[nickname][id]
-        user_id = get_memberids()[nickname][id]
-        try:
-            kick_member(id)
-            send_message("*surprised pikachu face*")
-            add_member(nickname,user_id)
-        except:
-            return 'invalid'
-    else:
-        send_message("Bad tussle :()")
-    return 'ok'
+    tusslers = participants
+    tusslers.append(last_message('nickname'))
+    random.shuffle(tusslers)
+    for tussler in tusslers:
+        if nickname in get_memberids().keys(): # verify valid mentions
+            id = get_memberids()[nickname][id]
+            user_id = get_memberids()[nickname][id]
+            try:
+                kick_member(id)
+                send_message("*surprised pikachu face*")
+                add_member(nickname,user_id)
+                return 'ok'
+     send_message("Bad tussle :(")
+     return 'error'
+
 
 # implicit commands
 def dclub():
