@@ -19,7 +19,7 @@ def webhook():
             bot_commanded(parse(text))
             return 'ok'
         for key in dbot.keywordDict.keys():
-            if key in remove_mentions(text)[0]: # bot understands something
+            if key=='dbot' or key in remove_mentions(text)[0]: # bot understands something
                 bot_understood(key)
         return 'ok'
         # bot is implicitly called
@@ -52,6 +52,7 @@ def parse(text): # breaks down user message
                 words.pop(i)
             else:
                 commands.append(word)
+                i += 1
         else:
             if word in dbot.commandDict.keys():
                 commands.append(word)
