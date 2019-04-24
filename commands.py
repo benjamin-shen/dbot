@@ -295,11 +295,11 @@ def inches():
     send_message(result)
     return result
 def tussle(participants):
+    master = 'Benjamin Shen' # default nickname
     tusslers = participants
     memberids = get_memberids()
-    initiator = 'a supreme being'
+    initiator = master
     initiatorid = last_message('user_id')
-    master = 'Benjamin Shen'
     for nickname,ids in memberids.items():
         if ids['user_id']=='62752724': # bot owner can't be kicked!
             master = nickname
