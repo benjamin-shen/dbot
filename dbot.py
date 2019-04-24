@@ -44,37 +44,38 @@ def parse(msg): # breaks down user message
     while i<len(words):
         word = words[i]
         if word=='tussle':
-            dbot.tussle(mentioned)
-        if word in dbot.commandDict.keys():
-            commands.append(word)
-        if len(commands)>0:
-            # deal with parameters
-            if word=='-' and i+1<len(words):
-                param = word+words[i+1]
-                if commands[-1]+param in dbot.functions.keys():
-                    commands.append(param)
-                    words.pop(i+1)
-            elif word[:1]=='-' and commands[-1]+word in dbot.functions.keys():
+            if dbot.tussle(mentioned):
+                words.pop(i)
+            else:
                 commands.append(word)
-        i += 1
+        else:
+            if word in dbot.commandDict.keys():
+                commands.append(word)
+            if len(commands)>0:
+                # deal with parameters
+                if word=='-' and i+1<len(words):
+                    param = word+words[i+1]
+                    if commands[-1]+param in dbot.functions.keys():
+                        commands.append(param)
+                        words.pop(i+1)
+                elif word[:1]=='-' and commands[-1]+word in dbot.functions.keys():
+                    commands.append(word)
+            i += 1
     return commands
 def bot_commanded(commands):
     length = len(commands)
-    if length==0:
-        dbot.send_message("Try 'dbot help'.")
-    else:
-        i = 0
-        while i<length:
-            j = 1
-            command = commands[i]
-            if i+1==length or commands[i+1][:1]!='-': # no parameters
-                dbot.functions[command]()
-            else:
-                param = commands[i+j]
-                while i+j<length and param[:1]=='-': # with parameters
-                    dbot.functions[command+param]()
-                    j += 1
-            i += j
+    i = 0
+    while i<length:
+        j = 1
+        command = commands[i]
+        if i+1==length or commands[i+1][:1]!='-': # no parameters
+            dbot.functions[command]()
+        else:
+            param = commands[i+j]
+            while i+j<length and param[:1]=='-': # with parameters
+                dbot.functions[command+param]()
+                j += 1
+        i += j
     return 'ok'
 def bot_understood(keyword):
     if keyword=='penis' or keyword=='dick' or keyword=='cock':

@@ -298,15 +298,18 @@ def tussle(participants):
     tusslers = participants
     tusslers.append(last_message('nickname'))
     random.shuffle(tusslers)
+    print(tusslers)
     for nickname in tusslers:
         if nickname in get_memberids().keys(): # verify valid mentions
-            id = get_memberids()[nickname]['id']
-            user_id = get_memberids()[nickname]['user_id']
+            member = get_memberids()[nickname]
+            id = member['id']
+            user_id = member['user_id']
             kick_member(id)
+            send_message(nickname + " is a horse's ass!")
             time.sleep(5)
             add_member(nickname,user_id)
-            return 'ok'
-    return 'error'
+            return True
+    return False
 
 # implicit commands
 def dclub():
