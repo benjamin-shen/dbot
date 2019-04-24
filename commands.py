@@ -65,11 +65,11 @@ def get_messages():
     sent = ""
     messages = requests.get('https://api.groupme.com/v3/groups/'+group_id+'/messages?token='+access_token).json()['response']['messages']
     return messages # list of dictionaries; last 20 messages
-def last_message(str):
+def last_message(key):
     result = ""
     msg = get_messages()[0]
     try:
-        result += msg[str]
+        result += msg[key]
     except:
         result += "Error: couldn't handle request"
     return result
@@ -87,18 +87,18 @@ def get_memberids():
         user_id = member['user_id']
         result[nickname] = {'id':id,'user_id':id}
     return result
-def kick_member(id):
+def kick_member(member):
     vars()
     data = {
-        'membership_id': id,
+        'membership_id': member,
     }
-    requests.post('https://api.groupme.com/v3/groups/'+group_id+'/members/'+id+'/remove?token='+access_token, json=data)
-def add_member(name,user_id):
+    requests.post('https://api.groupme.com/v3/groups/'+group_id+'/members/'+member+'/remove?token='+access_token, json=data)
+def add_member(membername,memberid):
     vars()
     data = {
         'members': [{
-            'nickname': name,
-            'user_id':  user_id,
+            'nickname': membername,
+            'user_id':  memberid,
         }]
     }
     print(data['members'][0]['user_id'])
