@@ -92,7 +92,7 @@ def kick_member(id):
     data = {
         'membership_id': id,
     }
-    requests.post('https://api.groupme.com/v3/groups/'+group_id+'/members/'+id+'/remove?'+access_token, json=data)
+    requests.post('https://api.groupme.com/v3/groups/'+group_id+'/members/'+id+'/remove?token='+access_token, json=data)
 def add_member(name,id):
     vars()
     data = {
@@ -101,7 +101,7 @@ def add_member(name,id):
             'user_id':  id,
         }]
     }
-    requests.post('https://api.groupme.com/v3/groups/'+group_id+'/members/'+id+'/remove?'+access_token, json=data)
+    requests.post('https://api.groupme.com/v3/groups/'+group_id+'/members/add?token='+access_token, json=data)
 
 # basic commands
 def d_help():
