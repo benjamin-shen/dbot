@@ -281,7 +281,7 @@ def tussle(participants):
     tusslers = participants
     tusslers.append(last_message('nickname'))
     random.shuffle(tusslers)
-    for tussler in tusslers:
+    for nickname in tusslers:
         if nickname in get_memberids().keys(): # verify valid mentions
             id = get_memberids()[nickname][id]
             user_id = get_memberids()[nickname][id]

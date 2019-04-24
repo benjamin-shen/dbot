@@ -35,7 +35,7 @@ def parse(msg): # breaks down user message
     nicknames = dbot.get_memberids().keys()
     print(nicknames) #test
     for nickname in nicknames:
-        mention = '@' + nickname.strip()
+        mention = '@' + nickname.lower()
         if mention in msg:
             mentions.append(nickname)
             msg = msg.replace(mention,'') # remove mention from text
