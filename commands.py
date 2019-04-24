@@ -55,12 +55,8 @@ def send_message(to_send):
         'bot_id' : bot_id,
         'text'   : to_send.strip(),
     }
-    try:
-        request = Request(url, urlencode(data).encode())
-        json = urlopen(request).read().decode()
-    except:
-        print("Error: send failed.")
-        return 'error'
+    requests.post(url+'?token='+access_token, json=data)
+    return to_send
 def get_messages():
     vars()
     sent = ""
@@ -321,19 +317,19 @@ def tussle(participants):
 
 # implicit commands
 def dclub():
-    result = ""
     chance = random.randint(1,100)
     if chance<=50:
+        result = "What are the chances?"
         id = last_message('sender_id')
         if id=='43405903': # Dubem
-            result += "We have " + str(random.randint(1,4)) + " out of 4 voice parts."
+            result = "We have " + str(random.randint(1,4)) + " out of 4 voice parts."
         elif id=='62752724': # Benjamin
-            result += "Daddy made me say this."
+            result = "Daddy made me say this."
         elif id=='49904547': # Lucas
-            result += "Yoshi!"
+            result = "Yoshi!"
         elif id=='26134002': # Nate
-            result += "Careful, that's Natebot."
+            result = "Careful, that's Natebot."
         elif id=='43418465': # Aidan
-            result += "CORRECT."
+            result = "CORRECT."
         send_message(result)
     return result
