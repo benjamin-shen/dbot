@@ -12,9 +12,9 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 
 # config vars
-access_token = 0
-bot_id = 0
-group_id = 0
+access_token = 'error'
+bot_id = 'error'
+group_id = 'error'
 def vars(): # init config variables
     global access_token
     global bot_id
@@ -22,6 +22,9 @@ def vars(): # init config variables
     access_token = os.getenv('GROUPME_TOKEN')
     bot_id = os.getenv('GROUPME_BOT_ID')
     group_id = os.getenv('GROUPME_GROUP_ID')
+    if access_token=='error' or bot_id=='error' or group_id=='error':
+        return False
+    return True
 
 # interpret text files
 commandDict = {}
@@ -72,26 +75,43 @@ def last_message(str):
 def get_members():
     vars()
     sent = ""
-    members = requests.get('https://api.groupme.com/v3/groups/'+group_id+'?'+access_token).json()['response']['members']
+    members = requests.get('https://api.groupme.com/v3/groups/'+group_id+'?token='+access_token).json()['response']['members']
     return members
 def get_memberids():
     result = {}
     members = get_members()
     for member in members:
-        id = member['id']
         nickname = member['nickname']
+        id = member['id']
         user_id = member['user_id']
         result[nickname] = {'id':id,'user_id':id}
     return result
 def kick_member(id):
     vars()
-    requests.post('https://api.groupme.com/v3/groups/'+group_id+'/members/'+id+'/remove?'+access_token)
-    return 'kicked'
+    url  = 'https://api.groupme.com/v3/groups/'+group_id+'/members/'+id+'/remove?'+access_token
+    data = {
+        'membership_id': id,
+    }
+    try:
+        request = Request(url, urlencode(data).encode())
+        json = urlopen(request).read().decode()
+    except:
+        print("Error: kick failed.")
+        return False
 def add_member(name,id):
     vars()
-    data = {'members':[{'nickname':name,'user_id':id}]}
-    requests.post('https://api.groupme.com/v3/groups/'+group_id+'/members/add?'+access_token, json=data)
-    return 'added'
+    url  = 'https://api.groupme.com/v3/bots/post'
+    data = {
+        'members': [{
+            'nickname': name,
+            'user_id':  id,
+        }]
+    }
+    try:
+        request = Request(url, urlencode(data).encode())
+        json = urlopen(request).read().decode()
+    except:
+        print("Error: add failed.")
 
 # basic commands
 def d_help():
