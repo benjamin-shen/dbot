@@ -60,10 +60,18 @@ def get_messages():
     sent = ""
     messages = requests.get('https://api.groupme.com/v3/groups/'+group_id+'/messages?token='+access_token).json()['response']['messages']
     return messages # list of dictionaries; last 20 messages
-msg = get_messages()[0]
-name = msg['name']
-id = msg['sender_id']
-text = msg['text']
+def last_message(str):
+    result = ""
+    msg = get_messages()[0]
+    if str=='name':
+        result += msg['name']
+    elif str=='id':
+        result += msg['sender_id']
+    elif str=="text":
+        result += msg['text']
+    else:
+        result += "Error: couldn't handle request"
+    return result
 
 # commands
 def d_help():
@@ -86,7 +94,7 @@ def info_1():
     result = "dbot is created and managed by Benjamin Shen '22."
     return result
 def hello():
-    result = "Hello, " + name + "."
+    result = "Hello, " + last_message('name') + "."
     return result
 def time():
     result = ""
