@@ -1,5 +1,6 @@
 help: list the commands I know (-syntax)
 info: learn about me (-creator)
+hello: be greeted by me
 time: interpret current time (-day)
 dinner: choose a random dining hall (-west)
 bus: give the next bus time for the 90 from 505 to North

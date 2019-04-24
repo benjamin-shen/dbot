@@ -55,11 +55,15 @@ def send_message(to_send):
         json = urlopen(request).read().decode()
     except:
         print("Error: send failed.")
-def get_message():
+def get_messages():
     vars()
     sent = ""
-    messages = requests.get('https://api.groupme.com/v3/groups/'+group_id+'/messages?token='+access_token, params = {'token':access_token}).json()['response']['messages']
-    return messages # list of dictionaries
+    messages = requests.get('https://api.groupme.com/v3/groups/'+group_id+'/messages?token='+access_token).json()['response']['messages']
+    return messages # list of dictionaries; last 20 messages
+last_message = get_messages()[0]
+name = last_message['name']
+id = last_message['sender_id']
+text = last_message['text']
 
 # commands
 def d_help():
@@ -81,6 +85,8 @@ def info():
 def info_1():
     result = "dbot is created and managed by Benjamin Shen '22."
     return result
+def hello():
+    result = "Hello, " + name + "."
 def time():
     result = ""
     now = datetime.now(pytz.timezone('US/Eastern'))
@@ -201,6 +207,7 @@ functions = {
     "help-github": d_help_2,
     "info": info,
     "info-creator": info_1,
+    "hello": hello,
     "time": time,
     "time-day": time_1,
     "dinner": dinner,
