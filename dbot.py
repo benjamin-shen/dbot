@@ -11,16 +11,20 @@ app = Flask(__name__)
 # which hosts a server to interpret the data
 @app.route('/', methods=['POST'])
 def webhook():
+    time.sleep(1)
     data = request.get_json() # equivalent to last_message
     text = data['text'].lower()
-
     if data['name'] != 'dbot':
         if text.startswith('dbot '): # bot is explicitly called
             bot_commanded(parse(text))
             return 'ok'
+        msgdata = remove_mentions(text)
+        msg = msgdata[0]
+        mentioned = msgdata[1]
+        print(msg)
+        print(mentioned)
         for key in dbot.keywordDict.keys():
-            msgdata = remove_mentions(text)
-            if key in msgdata[0] and not (key in msgdata[2]): # bot understands something
+            if key in msg: # bot understands something
                 bot_understood(key)
         return 'ok'
         # bot is implicitly called
@@ -30,23 +34,21 @@ def webhook():
     return 'ok'
 
 # text functions
-def remove_mentions(msg):
+def remove_mentions(text):
     nicknames = dbot.get_memberids().keys()
+    msg = text
     mentioned = []
-    names = ""
     for nickname in nicknames:
-        name = nickname.lower()
-        if name!='dbot':
-            mention = '@' + name.lower()
-            if mention in msg:
+        if nickname.lower()!='dbot':
+            mention = '@' + nickname
+            if mention in text:
                 mentioned.append(nickname)
                 msg = msg.replace(mention,'') # remove mention from text
-            if name in msg:
-                names += name + ","
-    return msg, mentioned, names
+    return msg, mentioned
 def parse(text): # breaks down user message
-    msg = remove_mentions(text)[0]
-    mentioned = remove_mentions(text)[1]
+    msgdata = remove_mentions(text)
+    msg = msgdata[0]
+    mentioned = msgdata[1]
     words = msg.split()
     words.pop(0) # remove call to dbot
     commands = []
