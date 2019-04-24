@@ -59,8 +59,7 @@ def get_message():
     vars()
     sent = ""
     messages = requests.get('https://api.groupme.com/v3/groups/'+group_id+'/messages?token='+access_token, params = {'token':access_token}).json()['response']['messages']
-    return messages.keys()
-print(get_message())
+    return messages # list of dictionaries
 
 # commands
 def d_help():
