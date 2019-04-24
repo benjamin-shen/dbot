@@ -23,7 +23,7 @@ def vars(): # init config variables
     bot_id = os.getenv('GROUPME_BOT_ID')
     group_id = os.getenv('GROUPME_GROUP_ID')
     if access_token=='error' or bot_id=='error' or group_id=='error':
-        return 'error''
+        return 'error'
     return 'ok'
 
 # interpret text files
@@ -89,29 +89,19 @@ def get_memberids():
     return result
 def kick_member(id):
     vars()
-    url  = 'https://api.groupme.com/v3/groups/'+group_id+'/members/'+id+'/remove?'+access_token
     data = {
         'membership_id': id,
     }
-    try:
-        request = Request(url, urlencode(data).encode())
-    except:
-        print("Error: kick failed.")
-        return 'error''
+    requests.post('https://api.groupme.com/v3/groups/'+group_id+'/members/'+id+'/remove?'+access_token, json=data)
 def add_member(name,id):
     vars()
-    url  = 'https://api.groupme.com/v3/bots/post'
     data = {
         'members': [{
             'nickname': name,
             'user_id':  id,
         }]
     }
-    try:
-        request = Request(url, urlencode(data).encode())
-    except:
-        print("Error: add failed.")
-        return 'error'
+    requests.post('https://api.groupme.com/v3/groups/'+group_id+'/members/'+id+'/remove?'+access_token, json=data)
 
 # basic commands
 def d_help():
