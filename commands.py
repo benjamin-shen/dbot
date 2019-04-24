@@ -127,7 +127,7 @@ def info_1():
 def hello():
     result = "Hello, " + last_message('name') + "."
     return result
-def time():
+def time_0():
     result = ""
     now = datetime.now(pytz.timezone('US/Eastern'))
     day = now.strftime('%w')
@@ -234,7 +234,7 @@ def glozz_4():
             result.append(member)
     return "No one:\n" + random.choice(result)
 def tussle_0():
-    result = "A tussle has occurred."
+    result = "TUSSLE!"
     return result
 
 # function dictionary
@@ -245,7 +245,7 @@ functions = {
     "info": info,
     "info-creator": info_1,
     "hello": hello,
-    "time": time,
+    "time": time_0,
     "time-day": time_1,
     "dinner": dinner,
     "dinner-west": dinner_1,

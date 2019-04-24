@@ -30,12 +30,12 @@ def webhook():
 
 # text functions
 def parse(msg): # breaks down user message
-    mentions = []
+    mentioned = []
     nicknames = dbot.get_memberids().keys()
     for nickname in nicknames:
         mention = '@' + nickname.lower()
         if mention in msg:
-            mentions.append(nickname)
+            mentioned.append(nickname)
             msg = msg.replace(mention,'') # remove mention from text
     words = msg.split()
     words.pop(0) # remove call to dbot
@@ -44,8 +44,8 @@ def parse(msg): # breaks down user message
     while i<len(words):
         word = words[i]
         if word=='tussle':
-            if len(mentions)>0:
-                dbot.tussle(mentions)
+            if len(mentioned)>0:
+                dbot.tussle(mentioned)
             else:
                 dbot.send_message("You can't tussle air!")
             length = len(commands)
@@ -72,7 +72,9 @@ def bot_commanded(commands):
             j = 1
             command = commands[i]
             if i+1==length or commands[i+1][:1]!='-': # no parameters
-                dbot.send_message(dbot.functions[command]())
+                result = dbot.functions[command]()
+                if command != 'tussle':
+                    dbot.send_message(result)
             else:
                 param = commands[i+j]
                 while i+j<length and param[:1]=='-': # with parameters
