@@ -19,12 +19,12 @@ def webhook():
         if text.startswith('dbot'): # bot is explicitly called
             bot_commanded(parse(text))
             return 'ok'
-        for key,value in dbot.keywordDict.items():
+        for key in dbot.keywordDict.keys():
             if key in text: # bot understands something
                 bot_understood(key)
-                return 'ok'
+        return 'ok'
         # bot is implicitly called
-        dclub()
+        dbot.dclub()
     elif data['sender_id'] != os.getenv('GROUPME_DBOT'): # dbot imposter
         dbot.send_message("Who are you?!")
     return 'ok'
@@ -61,10 +61,10 @@ def bot_commanded(commands):
             if command=='tussle':
                 if i+1<length:
                     dbot.tussle(commands[i+1])
-                    command.pop(i).pop(i)
+                    commands.pop(i).pop(i)
                 else:
                     dbot.send_message("You can't tussle air!")
-                    command.pop(i)
+                    commands.pop(i)
                 length = len(commands)
             else:
                 j = 1
@@ -80,7 +80,7 @@ def bot_understood(keyword):
     if keyword=='penis' or keyword=='dick' or keyword=='cock':
         dbot.send_message(dbot.inches())
     else:
-        result = value
+        result = dbot.keywordDict[keyword]
         while len(result) > 1000: # handle character limit
             i = result[:1000].rfind(" ") # don't split a character
             if i != -1:
