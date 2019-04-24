@@ -60,10 +60,10 @@ def get_messages():
     sent = ""
     messages = requests.get('https://api.groupme.com/v3/groups/'+group_id+'/messages?token='+access_token).json()['response']['messages']
     return messages # list of dictionaries; last 20 messages
-last_message = get_messages()[0]
-name = last_message['name']
-id = last_message['sender_id']
-text = last_message['text']
+msg = get_messages()[0]
+name = msg['name']
+id = msg['sender_id']
+text = msg['text']
 
 # commands
 def d_help():
@@ -87,6 +87,7 @@ def info_1():
     return result
 def hello():
     result = "Hello, " + name + "."
+    return result
 def time():
     result = ""
     now = datetime.now(pytz.timezone('US/Eastern'))
