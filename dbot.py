@@ -70,6 +70,8 @@ def parse(text): # breaks down user message
     return commands
 def bot_commanded(commands):
     length = len(commands)
+    if length==0 or length>0 and all(command=='tussle' for command in commands):
+        dbot.send_message("Try 'dbot help'.")
     i = 0
     while i<length:
         j = 1

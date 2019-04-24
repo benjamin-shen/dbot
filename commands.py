@@ -298,7 +298,7 @@ def inches():
 def tussle(participants):
     tusslers = participants
     memberids = get_memberids()
-    initiator = 'a ghost'
+    initiator = 'a supreme being'
     initiatorid = last_message('user_id')
     master = 'Benjamin Shen'
     for nickname,ids in memberids.items():
