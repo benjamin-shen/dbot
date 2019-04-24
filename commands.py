@@ -306,11 +306,11 @@ def tussle(participants):
         if nickname in memberids.keys(): # verify valid mentions
             member = memberids[nickname]
             id = member['id']
-            user_id = member['user_id
+            user_id = member['user_id']
             if user_id==initiatorid:
                 send_message(nickname + " hurt themselves in their confusion!")
             else:
-                send_message(nickname + " was bested by " + initiator + ".")']
+                send_message(nickname + " was bested by " + initiator + ".")
             kick_member(id)
             add_member(nickname,user_id)
             return True

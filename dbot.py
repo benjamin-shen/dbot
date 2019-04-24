@@ -19,7 +19,7 @@ def webhook():
             bot_commanded(parse(text))
             return 'ok'
         for key in dbot.keywordDict.keys():
-            if key in text: # bot understands something
+            if key in remove_mentions(text)[0]: # bot understands something
                 bot_understood(key)
         return 'ok'
         # bot is implicitly called
@@ -29,7 +29,7 @@ def webhook():
     return 'ok'
 
 # text functions
-def parse(msg): # breaks down user message
+def remove_mentions(msg):
     mentioned = []
     nicknames = dbot.get_memberids().keys()
     for nickname in nicknames:
@@ -37,6 +37,10 @@ def parse(msg): # breaks down user message
         if mention in msg:
             mentioned.append(nickname)
             msg = msg.replace(mention,'') # remove mention from text
+    return msg, mentioned
+def parse(text): # breaks down user message
+    msg = remove_mentions(text)[0]
+    mentioned = remove_mentions(text)[1]
     words = msg.split()
     words.pop(0) # remove call to dbot
     commands = []
