@@ -93,14 +93,15 @@ def kick_member(id):
         'membership_id': id,
     }
     requests.post('https://api.groupme.com/v3/groups/'+group_id+'/members/'+id+'/remove?token='+access_token, json=data)
-def add_member(name,id):
+def add_member(name,user_id):
     vars()
     data = {
         'members': [{
             'nickname': name,
-            'user_id':  id,
+            'user_id':  user_id,
         }]
     }
+    print(data['members'][0]['user_id'])
     requests.post('https://api.groupme.com/v3/groups/'+group_id+'/members/add?token='+access_token, json=data)
 
 # basic commands
@@ -280,7 +281,6 @@ def tussle(participants):
             id = get_memberids()[nickname]['id']
             user_id = get_memberids()[nickname]['user_id']
             kick_member(id)
-            send_message("*surprised pikachu face*")
             add_member(nickname,user_id)
             return 'ok'
     send_message("Bad tussle :(")
@@ -303,4 +303,5 @@ def dclub():
         elif id=='43418465': # Aidan
             result += "CORRECT."
     if result != "":
+        # send_message(result)
         return result

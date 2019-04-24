@@ -50,7 +50,7 @@ def parse(msg): # breaks down user message
             else:
                 dbot.send_message("You can't tussle air!")
             length = len(commands)
-        elif word in dbot.commandDict.keys():
+        if word in dbot.commandDict.keys():
             commands.append(word)
         if len(commands)>0:
             # deal with parameters
