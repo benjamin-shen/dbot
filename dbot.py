@@ -1,4 +1,5 @@
 # dbot
+import os
 import commands as dbot
 import time
 
@@ -17,11 +18,15 @@ def webhook():
     if data['name'] != 'dbot':
         if text.startswith('dbot'): # bot is explicitly called
             bot_commanded(parse(text))
-        else: # bot understands something
-            bot_understood(text)
-        if False: # bot is implicitly called
             return
-    return "ok", 200
+        for key,value in dbot.keywordDict.items():
+            if key in msg: # bot understands something
+                bot_understood(key)
+                return
+        # bot is implicitly called
+        return
+    elif data['sender_id'] != os.getenv('GROUPME_DBOT'): # dbot imposter
+        bot.send_message("Who are you?!")
 
 # text functions
 def parse(msg): # breaks down user message
@@ -61,20 +66,18 @@ def bot_commanded(commands):
                     dbot.send_message(dbot.functions[command+param]())
                     j += 1
             i += j
-def bot_understood(msg):
-    for key,value in dbot.keywordDict.items():
-        if key in msg:
-            if key=='penis' or key=='dick' or key=='cock':
-                dbot.send_message(dbot.inches())
+def bot_understood(keyword):
+    if keyword=='penis' or keyword=='dick' or keyword=='cock':
+        dbot.send_message(dbot.inches())
+    else:
+        result = value
+        while len(result) > 1000: # handle character limit
+            i = result[:1000].rfind(" ") # don't split a character
+            if i != -1:
+                i += 1
             else:
-                result = value
-                while len(result) > 1000: # handle character limit
-                    i = result[:1000].rfind(" ") # don't split a character
-                    if i != -1:
-                        i += 1
-                    else:
-                        i = 1000
-                    dbot.send_message(result[:i])
-                    result = result[i:]
-                    time.sleep(0.1)
-                dbot.send_message(result);
+                i = 1000
+            dbot.send_message(result[:i])
+            result = result[i:]
+            time.sleep(0.1)
+        dbot.send_message(result);
