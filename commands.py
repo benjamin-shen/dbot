@@ -48,6 +48,7 @@ with open('dictionaries/keywords.txt', 'r') as file:
 
 # GroupMe functions
 def send_message(to_send):
+    time.sleep(1)
     vars()
     url  = 'https://api.groupme.com/v3/bots/post'
     data = {
@@ -280,6 +281,7 @@ def tussle(participants):
             id = get_memberids()[nickname]['id']
             user_id = get_memberids()[nickname]['user_id']
             kick_member(id)
+            time.sleep(1)
             add_member(nickname,user_id)
             return 'ok'
     send_message("Bad tussle :(")

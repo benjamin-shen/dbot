@@ -14,7 +14,6 @@ def webhook():
     data = request.get_json() # equivalent to last_message
     text = data['text'].lower()
 
-    time.sleep(1)
     if data['name'] != 'dbot':
         if text.startswith('dbot '): # bot is explicitly called
             bot_commanded(parse(text))
