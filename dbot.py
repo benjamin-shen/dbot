@@ -18,16 +18,16 @@ def webhook():
     if data['name'] != 'dbot':
         if text.startswith('dbot'): # bot is explicitly called
             bot_commanded(parse(text))
-            return
+            return 'ok'
         for key,value in dbot.keywordDict.items():
             if key in text: # bot understands something
                 bot_understood(key)
-                return
+                return 'ok'
         # bot is implicitly called
         dclub()
-        return
     elif data['sender_id'] != os.getenv('GROUPME_DBOT'): # dbot imposter
         dbot.send_message("Who are you?!")
+    return 'ok'
 
 # text functions
 def parse(msg): # breaks down user message
