@@ -1,20 +1,26 @@
-#flask
-from flask import Flask, request
-app = Flask(__name__)
-
 # dbot
 import commands as dbot
 import time
+
+#flask
+from flask import Flask, request
+app = Flask(__name__)
 
 # someone sends a message and it directs to heroku,
 # which hosts a server to interpret the data
 @app.route('/', methods=['POST'])
 def webhook():
     data = request.get_json()
-    time.sleep(1)
     name = data['name']
     text = data['text'].lower()
 
+    try:
+        print(data['nickname'])
+    except: print("fail1")
+    try:
+        print(data['id'])
+    except: print("fail2")
+    time.sleep(1)
     if name != 'dbot':
         if text.startswith('dbot'): # bot is explicitly called
             bot_commanded(parse(text))
@@ -24,7 +30,7 @@ def webhook():
             return
     return "ok", 200
 
-# bot functions
+# text functions
 def parse(msg): # breaks down user message
     words = msg.split()
     words.pop(0) # remove call to dbot

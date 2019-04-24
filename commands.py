@@ -1,11 +1,26 @@
+# dbot
 import random
 from datetime import datetime
 import pytz
+import requests
 
+# access GroupMe
 import os
 import json
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
+
+# config vars
+access_token = 0
+bot_id = 0
+group_id = 0
+def vars(): # init config variables
+    global access_token
+    global bot_id
+    global group_id
+    access_token = os.getenv('GROUPME_TOKEN')
+    bot_id = os.getenv('GROUPME_BOT_ID')
+    group_id = os.getenv('GROUPME_GROUP_ID')
 
 # interpret text files
 commandDict = {}
@@ -29,9 +44,10 @@ with open('dictionaries/keywords.txt', 'r') as file:
 
 # GroupMe functions
 def send_message(to_send):
+    vars()
     url  = 'https://api.groupme.com/v3/bots/post'
     data = {
-        'bot_id' : os.getenv('GROUPME_BOT_ID'),
+        'bot_id' : bot_id,
         'text'   : to_send.strip(),
     }
     try:
@@ -39,6 +55,12 @@ def send_message(to_send):
         json = urlopen(request).read().decode()
     except:
         print("Error: send failed.")
+def get_message():
+    vars()
+    sent = ""
+    messages = requests.get('https://api.groupme.com/v3/groups/'+group_id+'/messages?token='+access_token, params = request_params).json()['response']['messages']
+    return messages
+print(get_message())
 
 # commands
 def d_help():
@@ -52,7 +74,7 @@ def d_help_1():
     result += "Keywords, regardless of white space, will trigger dbot to respond. Try to discover them all! The list of understood keywords is updated frequently."
     return result
 def d_help_2():
-    result = "https://github.com/benjamin-shen/dubembot"
+    result = "https://github.com/benjamin-shen/dbot"
     return result
 def info():
     result = "dbot is a GroupMe bot that responds to commands and recognizes keywords. The d stands for Douglas."
