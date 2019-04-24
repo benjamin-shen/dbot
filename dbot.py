@@ -80,6 +80,7 @@ def bot_commanded(commands):
                     dbot.send_message(dbot.functions[command+param]())
                     j += 1
             i += j
+    return 'ok'
 def bot_understood(keyword):
     if keyword=='penis' or keyword=='dick' or keyword=='cock':
         dbot.send_message(dbot.inches())
@@ -95,3 +96,4 @@ def bot_understood(keyword):
             result = result[i:]
         dbot.send_message(result);
     print('keyword understood')
+    return 'ok'

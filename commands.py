@@ -23,8 +23,8 @@ def vars(): # init config variables
     bot_id = os.getenv('GROUPME_BOT_ID')
     group_id = os.getenv('GROUPME_GROUP_ID')
     if access_token=='error' or bot_id=='error' or group_id=='error':
-        return False
-    return True
+        return 'error''
+    return 'ok'
 
 # interpret text files
 commandDict = {}
@@ -59,6 +59,7 @@ def send_message(to_send):
         json = urlopen(request).read().decode()
     except:
         print("Error: send failed.")
+        return 'error'
 def get_messages():
     vars()
     sent = ""
@@ -94,10 +95,9 @@ def kick_member(id):
     }
     try:
         request = Request(url, urlencode(data).encode())
-        json = urlopen(request).read().decode()
     except:
         print("Error: kick failed.")
-        return False
+        return 'error''
 def add_member(name,id):
     vars()
     url  = 'https://api.groupme.com/v3/bots/post'
@@ -109,9 +109,9 @@ def add_member(name,id):
     }
     try:
         request = Request(url, urlencode(data).encode())
-        json = urlopen(request).read().decode()
     except:
         print("Error: add failed.")
+        return 'error'
 
 # basic commands
 def d_help():
