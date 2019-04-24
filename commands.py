@@ -242,6 +242,9 @@ def glozz_4():
         if (member.find('"') != -1):
             result.append(member)
     return "No one:\n" + random.choice(result)
+def tussle_0():
+    result = "A tussle has occurred."
+    return result
 
 # function dictionary
 functions = {
@@ -261,6 +264,7 @@ functions = {
     "glozz-randomize": glozz_2,
     "glozz-single": glozz_3,
     "glozz-ism": glozz_4,
+    "tussle": tussle_0,
 }
 
 # other commands
@@ -283,8 +287,8 @@ def tussle(participants):
     random.shuffle(tusslers)
     for nickname in tusslers:
         if nickname in get_memberids().keys(): # verify valid mentions
-            id = get_memberids()[nickname][id]
-            user_id = get_memberids()[nickname][id]
+            id = get_memberids()[nickname]['id']
+            user_id = get_memberids()[nickname]['user_id']
             kick_member(id)
             send_message("*surprised pikachu face*")
             add_member(nickname,user_id)

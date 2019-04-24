@@ -33,13 +33,11 @@ def webhook():
 def parse(msg): # breaks down user message
     mentions = []
     nicknames = dbot.get_memberids().keys()
-    print(nicknames) #test
     for nickname in nicknames:
         mention = '@' + nickname.lower()
         if mention in msg:
             mentions.append(nickname)
             msg = msg.replace(mention,'') # remove mention from text
-    print(mentions) #test
     words = msg.split()
     words.pop(0) # remove call to dbot
     commands = []
