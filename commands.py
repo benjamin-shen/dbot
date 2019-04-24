@@ -85,12 +85,14 @@ def get_memberids():
         result[nickname] = {'id':id,'user_id':user_id}
     return result
 def kick_member(memberid):
+    time.sleep(2)
     vars()
     data = {
         'membership_id': memberid,
     }
     requests.post('https://api.groupme.com/v3/groups/'+group_id+'/members/'+memberid+'/remove?token='+access_token, json=data)
 def add_member(nickname,userid):
+    time.sleep(2)
     vars()
     data = {
         'members': [{
@@ -304,13 +306,12 @@ def tussle(participants):
         if nickname in memberids.keys(): # verify valid mentions
             member = memberids[nickname]
             id = member['id']
-            user_id = member['user_id']
-            kick_member(id)
+            user_id = member['user_id
             if user_id==initiatorid:
                 send_message(nickname + " hurt themselves in their confusion!")
             else:
-                send_message(nickname + " was bested by " + initiator + ".")
-            time.sleep(5)
+                send_message(nickname + " was bested by " + initiator + ".")']
+            kick_member(id)
             add_member(nickname,user_id)
             return True
     return False
