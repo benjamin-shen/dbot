@@ -85,23 +85,22 @@ def get_memberids():
         nickname = member['nickname']
         id = member['id']
         user_id = member['user_id']
-        result[nickname] = {'id':id,'user_id':id}
+        result[nickname] = {'id':id,'user_id':user_id}
     return result
-def kick_member(member):
+def kick_member(memberid):
     vars()
     data = {
-        'membership_id': member,
+        'membership_id': memberid,
     }
-    requests.post('https://api.groupme.com/v3/groups/'+group_id+'/members/'+member+'/remove?token='+access_token, json=data)
-def add_member(membername,memberid):
+    requests.post('https://api.groupme.com/v3/groups/'+group_id+'/members/'+memberid+'/remove?token='+access_token, json=data)
+def add_member(nickname,userid):
     vars()
     data = {
         'members': [{
-            'nickname': membername,
-            'user_id':  memberid,
+            'nickname': nickname,
+            'user_id':  userid,
         }]
     }
-    print(data['members'][0]['user_id'])
     requests.post('https://api.groupme.com/v3/groups/'+group_id+'/members/add?token='+access_token, json=data)
 
 # basic commands
