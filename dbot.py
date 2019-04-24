@@ -16,7 +16,7 @@ def webhook():
 
     time.sleep(1)
     if data['name'] != 'dbot':
-        if text.startswith('dbot'): # bot is explicitly called
+        if text.startswith('dbot '): # bot is explicitly called
             bot_commanded(parse(text))
             return 'ok'
         for key in dbot.keywordDict.keys():
@@ -35,7 +35,7 @@ def parse(msg): # breaks down user message
     nicknames = dbot.get_memberids().keys()
     print(nicknames) #test
     for nickname in nicknames:
-        mention = '@' + nickname
+        mention = '@' + nickname.strip()
         if mention in msg:
             mentions.append(nickname)
             msg = msg.replace(mention,'') # remove mention from text
@@ -52,7 +52,7 @@ def parse(msg): # breaks down user message
             else:
                 dbot.send_message("You can't tussle air!")
             length = len(commands)
-        if word in dbot.commandDict.keys():
+        elif word in dbot.commandDict.keys():
             commands.append(word)
         if len(commands)>0:
             # deal with parameters
@@ -73,6 +73,7 @@ def bot_commanded(commands):
         i = 0
         while i<length:
             j = 1
+            command = commands[i]
             if i+1==length or commands[i+1][:1]!='-': # no parameters
                 dbot.send_message(dbot.functions[command]())
             else:
@@ -94,5 +95,5 @@ def bot_understood(keyword):
                 i = 1000
             dbot.send_message(result[:i])
             result = result[i:]
-            time.sleep(0.1)
         dbot.send_message(result);
+    print('keyword understood')
