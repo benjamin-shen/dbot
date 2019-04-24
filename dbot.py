@@ -15,11 +15,11 @@ def webhook():
     text = data['text'].lower()
 
     try:
-        print(data['nickname'])
+        print(data['name'])
     except: print("fail1")
     try:
-        print(data['id'])
-    except: print("fail2")
+        print(data['sender_id'])
+    except: print("Fail to send sender_id")
     time.sleep(1)
     if name != 'dbot':
         if text.startswith('dbot'): # bot is explicitly called
