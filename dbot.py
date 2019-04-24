@@ -10,11 +10,11 @@ app = Flask(__name__)
 # which hosts a server to interpret the data
 @app.route('/', methods=['POST'])
 def webhook():
-    data = request.get_json()
+    data = request.get_json() # equivalent to last_message
     text = data['text'].lower()
 
     time.sleep(1)
-    if name != 'dbot':
+    if data['name'] != 'dbot':
         if text.startswith('dbot'): # bot is explicitly called
             bot_commanded(parse(text))
         else: # bot understands something
