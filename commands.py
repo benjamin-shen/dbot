@@ -64,15 +64,9 @@ def get_messages():
 def last_message(str):
     result = ""
     msg = get_messages()[0]
-    if str=='name':
-        result += msg['name']
-    elif str=='id':
-        result += msg['sender_id']
-    elif str=='membership':
-        result += msg['id']
-    elif str=="text":
-        result += msg['text']
-    else:
+    try:
+        result += msg[str]
+    except:
         result += "Error: couldn't handle request"
     return result
 def get_members():
@@ -263,9 +257,10 @@ def inches():
         result += str(length) + " inches"
     result += ")"
     return result
-def tussle(tusslee):
-    nickname = tusslee[1:]
-    if nickname in get_memberids().keys():
+def tussle(participants):
+    fighters = participants
+    fighters.append(last_message('nickname'))
+    if nickname in get_memberids().keys(): # verify valid mentions
         id = get_memberids()[nickname][id]
         user_id = get_memberids()[nickname][id]
         try:
@@ -283,7 +278,7 @@ def dclub():
     result = ""
     chance = random.randint(1,100)
     if chance<=5:
-        id = last_message('id')
+        id = last_message('sender_id')
         if id=='43405903': # Dubem
             result += "We have " + str(random.randint(1,4)) + " out of 4 voice parts."
         elif id=='62752724': # Benjamin

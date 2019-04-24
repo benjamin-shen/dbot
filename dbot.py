@@ -31,13 +31,26 @@ def webhook():
 
 # text functions
 def parse(msg): # breaks down user message
+    mentions = []
+    nicknames = dbot.get_memberids().keys()
+    for nickname in nicknames:
+        mention = '@' + nickname
+        if mention in msg:
+            mentions.append(nickname)
+            msg = msg.replace(mention,'') # remove mention from text
     words = msg.split()
     words.pop(0) # remove call to dbot
     commands = []
     i = 0
     while i<len(words):
         word = words[i]
-        if word in dbot.commandDict.keys():
+        if word=='tussle':
+            if len(mentions)>0:
+                dbot.tussle(mentions)
+            else:
+                dbot.send_message("You can't tussle air!")
+            length = len(commands)
+        elif word in dbot.commandDict.keys():
             commands.append(word)
         if len(commands)>0:
             # deal with parameters
@@ -57,25 +70,15 @@ def bot_commanded(commands):
     else:
         i = 0
         while i<length:
-            command = commands[i]
-            if command=='tussle':
-                if i+1<length:
-                    dbot.tussle(commands[i+1])
-                    commands.pop(i).pop(i)
-                else:
-                    dbot.send_message("You can't tussle air!")
-                    commands.pop(i)
-                length = len(commands)
+            j = 1
+            if i+1==length or commands[i+1][:1]!='-': # no parameters
+                dbot.send_message(dbot.functions[command]())
             else:
-                j = 1
-                if i+1==length or commands[i+1][:1]!='-': # no parameters
-                    dbot.send_message(dbot.functions[command]())
-                else:
-                    param = commands[i+j]
-                    while i+j<length and param[:1]=='-': # with parameters
-                        dbot.send_message(dbot.functions[command+param]())
-                        j += 1
-                i += j
+                param = commands[i+j]
+                while i+j<length and param[:1]=='-': # with parameters
+                    dbot.send_message(dbot.functions[command+param]())
+                    j += 1
+            i += j
 def bot_understood(keyword):
     if keyword=='penis' or keyword=='dick' or keyword=='cock':
         dbot.send_message(dbot.inches())
