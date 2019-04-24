@@ -300,7 +300,7 @@ def tussle(participants):
     initiator = 'a ghost'
     initiatorid = last_message('user_id')
     for nickname,ids in memberids.items():
-        if ids[user_id]==initiatorid:
+        if ids['user_id']==initiatorid:
             initiator = nickname
             tusslers.append(nickname)
     random.shuffle(tusslers)
@@ -323,7 +323,7 @@ def tussle(participants):
 def dclub():
     result = ""
     chance = random.randint(1,100)
-    if chance<=5:
+    if chance<=50:
         id = last_message('sender_id')
         if id=='43405903': # Dubem
             result += "We have " + str(random.randint(1,4)) + " out of 4 voice parts."
@@ -335,7 +335,5 @@ def dclub():
             result += "Careful, that's Natebot."
         elif id=='43418465': # Aidan
             result += "CORRECT."
-    if result != "":
-        # send_message(result)
         send_message(result)
     return result
