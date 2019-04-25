@@ -119,21 +119,21 @@ def d_help():
     send_message(result)
     return result
 def d_help_1():
-    result = "'[command] -[parameter]' or '[command] - [parameter]' executes the command with a parameter. Invalid syntax is ignored. Invalid parameters are ignored.\n"
+    result = "'dbot [command]' or \n'dbot [command] -[parameter]' or \n'dbot [command] - [parameter]' \nexecutes the command with a parameter. Invalid syntax is ignored. Invalid parameters are ignored.\n"
     result += "dbot can only recognize one parameter per command.\n"
     result += "Keywords, regardless of white space, will trigger dbot to respond. Try to discover them all! The list of understood keywords is updated frequently."
     send_message(result)
     return result
-def d_help_2():
-    result = "https://github.com/benjamin-shen/dbot"
-    send_message(result)
-    return result
 def info():
-    result = "dbot is a GroupMe bot that responds to commands and recognizes keywords. The d stands for Douglas."
+    result = "dbot is a GroupMe bot that responds to commands and recognizes keywords. The d stands for Douglas. The profile picture is GORT."
     send_message(result)
     return result
 def info_1():
     result = "dbot is created and managed by Benjamin Shen '22."
+    send_message(result)
+    return result
+def info_2():
+    result = "https://github.com/benjamin-shen/dbot"
     send_message(result)
     return result
 def hello():
@@ -269,9 +269,9 @@ def tussle_0():
 functions = {
     "help": d_help,
     "help-syntax": d_help_1,
-    "help-github": d_help_2,
     "info": info,
     "info-creator": info_1,
+    "info-github": info_2,
     "hello": hello,
     "time": time_0,
     "time-day": time_1,
