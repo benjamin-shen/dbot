@@ -38,7 +38,7 @@ def remove_mentions(text):
     for nickname in nicknames:
         if nickname.lower()!='dbot':
             mention = '@' + nickname.lower()
-            if mention in text: #THIS IS NOT WORKING
+            if mention in text:
                 mentioned.append(nickname)
                 msg = msg.replace(mention,'') # remove mention from text
     return msg, mentioned
