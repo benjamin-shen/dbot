@@ -1,11 +1,30 @@
+# dbot
 import random
+import time
 from datetime import datetime
 import pytz
+import requests
 
+# access GroupMe
 import os
 import json
 from urllib.parse import urlencode
 from urllib.request import Request, urlopen
+
+# config vars
+access_token = 'error'
+bot_id = 'error'
+group_id = 'error'
+def vars(): # init config variables
+    global access_token
+    global bot_id
+    global group_id
+    access_token = os.getenv('GROUPME_TOKEN')
+    bot_id = os.getenv('GROUPME_BOT_ID')
+    group_id = os.getenv('GROUPME_GROUP_ID')
+    if access_token=='error' or bot_id=='error' or group_id=='error':
+        return 'error'
+    return 'ok'
 
 # interpret text files
 commandDict = {}
@@ -29,49 +48,111 @@ with open('dictionaries/keywords.txt', 'r') as file:
 
 # GroupMe functions
 def send_message(to_send):
-    url  = 'https://api.groupme.com/v3/bots/post'
+    time.sleep(1)
+    vars()
+    url  = 'https://api.groupme.com/v3/bots/post?token=' + access_token
     data = {
-        'bot_id' : os.getenv('GROUPME_BOT_ID'),
+        'bot_id' : bot_id,
         'text'   : to_send.strip(),
     }
+    requests.post(url, json=data)
+    return to_send
+def get_messages():
+    vars()
+    url = 'https://api.groupme.com/v3/groups/'+group_id+'/messages?token='+access_token
+    messages = requests.get(url).json()['response']['messages']
+    return messages # list of dictionaries; last 20 messages
+def last_message(key):
+    result = ""
+    msg = get_messages()[0]
     try:
-        request = Request(url, urlencode(data).encode())
-        json = urlopen(request).read().decode()
+        result += msg[key]
     except:
-        print("Error: send failed.")
+        result += "Error: couldn't handle request"
+    return result
+def get_creator():
+    vars()
+    url = 'https://api.groupme.com/v3/groups/'+group_id+'?token='+access_token
+    creatorid = requests.get(url).json()['response']['creator_user_id']
+    return creatorid
+def get_members():
+    vars()
+    url = 'https://api.groupme.com/v3/groups/'+group_id+'?token='+access_token
+    members = requests.get(url).json()['response']['members']
+    return members
+def get_memberids():
+    result = {}
+    members = get_members()
+    for member in members:
+        nickname = member['nickname']
+        id = member['id']
+        user_id = member['user_id']
+        result[nickname] = {'id':id,'user_id':user_id}
+    return result
+def kick_member(memberid):
+    time.sleep(2)
+    vars()
+    url = 'https://api.groupme.com/v3/groups/'+group_id+'/members/'+memberid+'/remove?token='+access_token
+    data = {
+        'membership_id': memberid,
+    }
+    kicked = requests.post(url, json=data)
+    return kicked
+def add_member(nickname,userid):
+    time.sleep(2)
+    vars()
+    url = 'https://api.groupme.com/v3/groups/'+group_id+'/members/add?token='+access_token
+    data = {
+        'members': [{
+            'nickname': nickname,
+            'user_id':  userid,
+        }]
+    }
+    added = requests.post(url, json=data)
+    return added
 
-# commands
+# basic commands
 def d_help():
     result = ""
     for key,value in commandDict.items():
         result += "dbot " + key + ": " + value + "\n\n"
+    send_message(result)
     return result
 def d_help_1():
     result = "'[command] -[parameter]' or '[command] - [parameter]' executes the command with a parameter. Invalid syntax is ignored. Invalid parameters are ignored.\n"
     result += "dbot can only recognize one parameter per command.\n"
     result += "Keywords, regardless of white space, will trigger dbot to respond. Try to discover them all! The list of understood keywords is updated frequently."
+    send_message(result)
     return result
 def d_help_2():
     result = "https://github.com/benjamin-shen/dbot"
+    send_message(result)
     return result
 def info():
     result = "dbot is a GroupMe bot that responds to commands and recognizes keywords. The d stands for Douglas."
+    send_message(result)
     return result
 def info_1():
     result = "dbot is created and managed by Benjamin Shen '22."
+    send_message(result)
     return result
-def time():
+def hello():
+    result = "Hello, " + last_message('name') + "."
+    send_message(result)
+    return result
+def time_0():
     result = ""
     now = datetime.now(pytz.timezone('US/Eastern'))
     day = now.strftime('%w')
     hour = now.strftime('%I')
     min = now.strftime('%M')
     ampm = now.strftime('%p')
-    if day==2 and 4<int(hour) and int(hour)<8:
+    if day=='2' and 4<int(hour) and int(hour)<8:
         result += "Come to RPCC!\n"
-    elif day==3:
+    elif day=='3':
         result += "Happy Wednesday!\n"
     result += "It is currently " + hour + ":" + min + " " + ampm + "."
+    send_message(result)
     return result
 def time_1():
     result = ""
@@ -79,16 +160,19 @@ def time_1():
     day = now.strftime('%A')
     date = now.strftime('%x')
     result += "Today is " + day + ", " + date + "."
+    send_message(result)
     return result
 def dinner():
     result = ""
     halls = ['RPCC','Appel','Risley','Okenshields','Becker','Bethe','Cook','Keeton','Rose']
     result += random.choice(halls)
+    send_message(result)
     return result
 def dinner_1():
     result = ""
     halls = ['Becker','Bethe','Cook','Keeton','Rose']
     result += random.choice(halls)
+    send_message(result)
     return result
 from bus import stop1701
 def bus():
@@ -100,6 +184,7 @@ def bus():
         result += "No 90 buses anytime soon. Try Google Maps."
     else:
         result += "The next 90 is at " + time + "."
+    send_message(result)
     return result
 def glozz():
     glozz = []
@@ -123,40 +208,62 @@ def glozz():
                 glozz.append(name)
     return glozz
 def glozz_0():
-    result = []
+    members = []
     for member in glozz():
         i = member.find(":")
         if i != -1:
-            result.append(member[:i])
+            members.append(member[:i])
         else:
-            result.append(member)
-    return "\n".join(result)
+            members.append(member)
+    result = "\n".join(members)
+    send_message(result)
+    return result
 def glozz_1():
-    result = []
+    members = []
     for member in glozz():
         i = member.find(":")
         if i != -1:
-            result.append(member[:i])
+            members.append(member[:i])
         else:
-            result.append(member)
-    result.sort()
-    return "\n".join(result)
+            members.append(member)
+    members.sort()
+    result = "\n".join(members)
+    send_message(result)
+    return result
 def glozz_2():
-    result = []
+    members = []
     for member in glozz():
         i = member.find(":")
         if i != -1:
-            result.append(member[:i])
+            members.append(member[:i])
         else:
-            result.append(member)
-    random.shuffle(glozz)
-    return "\n".join(result)
+            members.append(member)
+    random.shuffle(members)
+    result = "\n".join(members)
+    send_message(result)
+    return result
 def glozz_3():
-    result = []
+    members = []
+    for member in glozz():
+        i = member.find(":")
+        if i != -1:
+            members.append(member[:i])
+        else:
+            members.append(member)
+    result = random.choice(members)
+    send_message(result)
+    return result
+def glozz_4():
+    isms = []
     for member in glozz():
         if (member.find('"') != -1):
-            result.append(member)
-    return "No one:\n" + random.choice(result)
+            isms.append(member)
+    result = "No one:\n" + random.choice(isms)
+    send_message(result)
+    return result
+def tussle_0():
+    result = "Tussle attempted."
+    return result
 
 # function dictionary
 functions = {
@@ -165,7 +272,8 @@ functions = {
     "help-github": d_help_2,
     "info": info,
     "info-creator": info_1,
-    "time": time,
+    "hello": hello,
+    "time": time_0,
     "time-day": time_1,
     "dinner": dinner,
     "dinner-west": dinner_1,
@@ -173,5 +281,63 @@ functions = {
     "glozz": glozz_0,
     "glozz-alphabetize": glozz_1,
     "glozz-randomize": glozz_2,
-    "glozz-ism": glozz_3,
+    "glozz-single": glozz_3,
+    "glozz-ism": glozz_4,
+    "tussle": tussle_0,
 }
+
+# other commands
+def tussle(participants):
+    tusslers = participants
+    memberids = get_memberids()
+    initiatorid = last_message('user_id')
+    initiator = 'a ghost'
+    for nickname,ids in memberids.items():
+        user_id = ids['user_id']
+        if user_id=='62752724' or user_id==get_creator(): # bot owner, group creator can't be kicked!
+            i = 0
+            while i<len(tusslers):
+                if tusslers[i]==nickname:
+                    tusslers.pop(i)
+                else:
+                    i += 1
+            if user_id==initiatorid:
+                initiator = nickname
+        elif user_id==initiatorid:
+            initiator = nickname
+            tusslers.append(nickname)
+    random.shuffle(tusslers)
+    for nickname in tusslers:
+        if nickname in memberids.keys(): # verify valid mentions
+            member = memberids[nickname]
+            id = member['id']
+            user_id = member['user_id']
+            if user_id==initiatorid:
+                send_message(nickname + ", you hurt yourself in your confusion!")
+            else:
+                send_message(nickname + " was bested by " + initiator + "!")
+            if kick_member(id):
+                add_member(nickname,user_id)
+            return True
+    send_message("Try 'dbot help'.")
+    return False
+
+# implicit commands
+def dclub():
+    result = ""
+    chance = random.randint(1,100)
+    if chance<=2:
+        id = last_message('sender_id')
+        if id=='43405903': # Dubem
+            result = "We have " + str(random.randint(1,4)) + " out of 4 voice parts."
+        elif id=='62752724': # Benjamin
+            result = "Daddy made me say this."
+        elif id=='49904547': # Lucas
+            result = "Yoshi!"
+        elif id=='26134002': # Nate
+            result = "Careful, that's Natebot."
+        elif id=='43418465': # Aidan
+            result = "CORRECT."
+        if result!="":
+            send_message(result)
+    return result
