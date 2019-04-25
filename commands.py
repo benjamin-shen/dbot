@@ -332,7 +332,7 @@ def tussle(participants):
 def dclub():
     chance = random.randint(1,100)
     if chance<=2:
-        result = "What are the chances?"
+        result = ""
         id = last_message('sender_id')
         if id=='43405903': # Dubem
             result = "We have " + str(random.randint(1,4)) + " out of 4 voice parts."
@@ -344,5 +344,6 @@ def dclub():
             result = "Careful, that's Natebot."
         elif id=='43418465': # Aidan
             result = "CORRECT."
-        send_message(result)
+        if result!="":
+            send_message(result)
     return result
