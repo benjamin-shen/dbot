@@ -311,7 +311,7 @@ def tussle(participants):
                 if tusslers[i]==nickname:
                     tusslers.pop(i)
                 else:
-                    i += 1        
+                    i += 1
         elif ids['user_id']==initiatorid:
             initiator = nickname
             tusslers.append(nickname)
@@ -325,8 +325,8 @@ def tussle(participants):
                 send_message(nickname + ", you hurt yourself in your confusion!")
             else:
                 send_message(nickname + " was bested by " + initiator + ".")
-            kick_member(id)
-            add_member(nickname,user_id)
+            if kick_member(id):
+                add_member(nickname,user_id)
             return True
     send_message("Try 'dbot help'.")
     return False
