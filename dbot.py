@@ -14,22 +14,20 @@ def webhook():
     time.sleep(1)
     data = request.get_json() # equivalent to last_message
     text = data['text'].lower()
-    if data['name'] != 'dbot':
+    if data['sender_type'] == 'user':
         if text.startswith('dbot '): # bot is explicitly called
             bot_commanded(parse(text))
             return 'ok'
         msgdata = remove_mentions(text)
         msg = msgdata[0]
         mentioned = msgdata[1]
-        print(msg)
-        print(mentioned)
         for key in dbot.keywordDict.keys():
             if key in msg and not (key in str(mentioned)): # bot understands something
                 bot_understood(key)
         return 'ok'
         # bot is implicitly called
         dbot.dclub()
-    elif data['sender_id'] != os.getenv('GROUPME_DBOT'): # dbot imposter
+    elif data['name'] == 'dbot' and data['sender_id'] != os.getenv('GROUPME_DBOT'): # dbot imposter
         dbot.send_message("Who are you?!")
     return 'ok'
 
@@ -41,7 +39,6 @@ def remove_mentions(text):
     for nickname in nicknames:
         if nickname.lower()!='dbot':
             mention = '@' + nickname.lower()
-            print(nickname)
             if mention in text: #THIS IS NOT WORKING
                 mentioned.append(nickname)
                 msg = msg.replace(mention,'') # remove mention from text
