@@ -96,7 +96,8 @@ def kick_member(memberid):
     data = {
         'membership_id': memberid,
     }
-    requests.post(url, json=data)
+    kicked = requests.post(url, json=data)
+    return kicked
 def add_member(nickname,userid):
     time.sleep(2)
     vars()
@@ -107,7 +108,8 @@ def add_member(nickname,userid):
             'user_id':  userid,
         }]
     }
-    requests.post(url, json=data)
+    added = requests.post(url, json=data)
+    return added
 
 # basic commands
 def d_help():
@@ -303,6 +305,7 @@ def tussle(participants):
     tusslers = participants
     memberids = get_memberids()
     initiatorid = last_message('user_id')
+    initiator = 'a ghost'
     for nickname,ids in memberids.items():
         user_id = ids['user_id']
         if user_id=='62752724' or user_id==get_creator(): # bot owner, group creator can't be kicked!
@@ -312,7 +315,9 @@ def tussle(participants):
                     tusslers.pop(i)
                 else:
                     i += 1
-        elif ids['user_id']==initiatorid:
+            if user_id==initiatorid:
+                initiator = nickname
+        elif user_id==initiatorid:
             initiator = nickname
             tusslers.append(nickname)
     random.shuffle(tusslers)
@@ -324,7 +329,7 @@ def tussle(participants):
             if user_id==initiatorid:
                 send_message(nickname + ", you hurt yourself in your confusion!")
             else:
-                send_message(nickname + " was bested by " + initiator + ".")
+                send_message(nickname + " was bested by " + initiator + "!")
             if kick_member(id):
                 add_member(nickname,user_id)
             return True
