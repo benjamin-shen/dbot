@@ -24,7 +24,7 @@ def webhook():
         print(msg)
         print(mentioned)
         for key in dbot.keywordDict.keys():
-            if key in msg: # bot understands something
+            if key in msg and not (key in str(mentioned)): # bot understands something
                 bot_understood(key)
         return 'ok'
         # bot is implicitly called
@@ -41,7 +41,8 @@ def remove_mentions(text):
     for nickname in nicknames:
         if nickname.lower()!='dbot':
             mention = '@' + nickname
-            if mention in text:
+            print(nickname)
+            if mention in text: #THIS IS NOT WORKING
                 mentioned.append(nickname)
                 msg = msg.replace(mention,'') # remove mention from text
     return msg, mentioned
@@ -90,7 +91,7 @@ def bot_commanded(commands):
         i += j
     return 'ok'
 def bot_understood(keyword):
-    if keyword=='penis' or keyword=='dick' or keyword=='cock':
+    if keyword=='dick':
         dbot.inches()
     else:
         result = dbot.keywordDict[keyword]
