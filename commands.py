@@ -70,6 +70,11 @@ def last_message(key):
     except:
         result += "Error: couldn't handle request"
     return result
+def get_creator():
+    vars()
+    url = 'https://api.groupme.com/v3/groups/'+group_id+'?token='+access_token
+    creatorid = requests.get(url).json()['response']['creator_user_id']
+    return creatorid
 def get_members():
     vars()
     url = 'https://api.groupme.com/v3/groups/'+group_id+'?token='+access_token
@@ -295,20 +300,18 @@ def inches():
     send_message(result)
     return result
 def tussle(participants):
-    master = 'Benjamin Shen' # default nickname
     tusslers = participants
     memberids = get_memberids()
-    initiator = master
     initiatorid = last_message('user_id')
     for nickname,ids in memberids.items():
-        if ids['user_id']=='62752724': # bot owner can't be kicked!
-            master = nickname
+        user_id = ids['user_id']
+        if user_id=='62752724' or user_id==get_creator(): # bot owner, group creator can't be kicked!
             i = 0
             while i<len(tusslers):
-                if tusslers[i]==master:
+                if tusslers[i]==nickname:
                     tusslers.pop(i)
                 else:
-                    i += 1
+                    i += 1        
         elif ids['user_id']==initiatorid:
             initiator = nickname
             tusslers.append(nickname)
