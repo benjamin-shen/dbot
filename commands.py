@@ -140,9 +140,9 @@ def time_0():
     hour = now.strftime('%I')
     min = now.strftime('%M')
     ampm = now.strftime('%p')
-    if day==2 and 4<int(hour) and int(hour)<8:
+    if day=='2' and 4<int(hour) and int(hour)<8:
         result += "Come to RPCC!\n"
-    elif day==3:
+    elif day=='3':
         result += "Happy Wednesday!\n"
     result += "It is currently " + hour + ":" + min + " " + ampm + "."
     send_message(result)
@@ -331,7 +331,7 @@ def tussle(participants):
 # implicit commands
 def dclub():
     chance = random.randint(1,100)
-    if chance<=50:
+    if chance<=2:
         result = "What are the chances?"
         id = last_message('sender_id')
         if id=='43405903': # Dubem
