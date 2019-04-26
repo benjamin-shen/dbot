@@ -256,7 +256,7 @@ def glozz_3():
 def glozz_4():
     isms = []
     for member in glozz():
-        if (member.find('"') != -1):
+        if (member.find(':') != -1):
             isms.append(member)
     result = "No one:\n" + random.choice(isms)
     send_message(result)
