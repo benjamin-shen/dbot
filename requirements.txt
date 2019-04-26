@@ -3,4 +3,4 @@ gunicorn==19.9.0
 pytz==2019.1
 beautifulsoup4==4.7.1
 requests==2.21.0
-yahoo-weather==1.0.7
+pyowm==2.10.0

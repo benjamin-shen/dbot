@@ -162,24 +162,23 @@ def time_1():
     result += "Today is " + day + ", " + date + "."
     send_message(result)
     return result
-from yahoo_weather.weather import YahooWeather
-from yahoo_weather.config.units import Unit
+import pyowm
 def weather():
-    data = YahooWeather(APP_ID="5fIaNu6m",api_key="dj0yJmk9QWZJOENnYW5pVjRYJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTgz",api_secret="c47c6886090bea97ec51d5cc4eb70d8ea551d9f9")
-    data.get_yahoo_weather_by_city('ithaca', Unit.fahrenheit)
-    return data
+    owm = pyowm.OWM(os.getenv('WEATHER_APIKEY'))
+    return owm
 def weather_0():
-    result = weather().condition.text
+    data = weather().weather_at_place('Ithaca,NY')
+    status = data.get_detailed_status()
+    temp = data.get_temperature('fahrenheit')['temp']
+    result = status + ", " + temp + "F"
     send_message(result)
     return result
 def weather_1():
     result = ""
-    forecasts = weather().forecast
-    for forecast in forecasts:
-        result += forecast.text + "\n"
-        result += forecast.date + "\n"
-        result += forecast.high + "\n"
-        result += forecast.low + "\n\n"
+    forecasts = weather().daily_forecast('Ithaca,NY', limit=6).get_weathers()
+    rainydays = forecasts.when_rain()
+    for days in rainydays:
+        result += days + "\n"
     send_message(result)
     return result
 def dinner():
@@ -296,7 +295,7 @@ functions = {
     "time": time_0,
     "time-day": time_1,
     "weather": weather_0,
-    "weather-forecast": weather_1,
+    "weather-rain": weather_1,
     "bus": bus,
     "dinner": dinner,
     "dinner-west": dinner_1,
