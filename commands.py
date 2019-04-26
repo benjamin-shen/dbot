@@ -327,7 +327,7 @@ def tussle(participants):
             id = member['id']
             user_id = member['user_id']
             if user_id==initiatorid:
-                send_message(nickname + ", you hurt yourself in your confusion!")
+                send_message(nickname + " tripped and punched himself in the face.")
             else:
                 send_message(nickname + " was bested by " + initiator + "!")
             if kick_member(id):
