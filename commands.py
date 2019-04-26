@@ -162,11 +162,12 @@ def time_1():
     result += "Today is " + day + ", " + date + "."
     send_message(result)
     return result
-from weather import Weather, Unit
+from yahoo_weather.weather import YahooWeather
+from yahoo_weather.config.units import Unit
 def weather():
-    weather = Weather(unit=Unit.FAHRENHEIT)
-    lookup = weather.lookup(2427936)
-    return lookup
+    data = YahooWeather(APP_ID="5fIaNu6m",api_key="dj0yJmk9QWZJOENnYW5pVjRYJnM9Y29uc3VtZXJzZWNyZXQmc3Y9MCZ4PTgz",api_secret="c47c6886090bea97ec51d5cc4eb70d8ea551d9f9")
+    data.get_yahoo_weather_by_city('ithaca', Unit.fahrenheit)
+    return data
 def weather_0():
     result = weather().condition.text
     send_message(result)
