@@ -165,7 +165,7 @@ def time_1():
 from weather import Weather, Unit
 def weather():
     weather = Weather(unit=Unit.FAHRENHEIT)
-    lookup = weather.lookup_by_location('ithaca')
+    lookup = weather.lookup(2427936)
     return lookup
 def weather_0():
     result = weather().condition.text
