@@ -167,8 +167,8 @@ def weather():
     owm = pyowm.OWM(os.getenv('WEATHER_APIKEY'))
     return owm
 def weather_0():
-    data = weather().weather_at_place('Ithaca,NY')
-    status = data.get_detailed_status()
+    data = weather().weather_at_coords(42.4440,76.5019)
+    status = data.get_status()
     temp = data.get_temperature('fahrenheit')['temp']
     result = status + ", " + temp + "F"
     send_message(result)
