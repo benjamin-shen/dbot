@@ -162,6 +162,25 @@ def time_1():
     result += "Today is " + day + ", " + date + "."
     send_message(result)
     return result
+from weather import Weather, Unit
+def weather():
+    weather = Weather(unit=Unit.FAHRENHEIT)
+    lookup = weather.lookup_by_location('ithaca')
+    return lookup
+def weather_0():
+    result = weather().condition.text
+    send_message(result)
+    return result
+def weather_1():
+    result = ""
+    forecasts = weather().forecast
+    for forecast in forecasts:
+        result += forecast.text + "\n"
+        result += forecast.date + "\n"
+        result += forecast.high + "\n"
+        result += forecast.low + "\n\n"
+    send_message(result)
+    return result
 def dinner():
     result = ""
     halls = ['RPCC','Appel','Risley','Okenshields','Becker','Bethe','Cook','Keeton','Rose']
@@ -275,9 +294,11 @@ functions = {
     "hello": hello,
     "time": time_0,
     "time-day": time_1,
+    "weather": weather_0,
+    "weather-forecast": weather_1,
+    "bus": bus,
     "dinner": dinner,
     "dinner-west": dinner_1,
-    "bus": bus,
     "glozz": glozz_0,
     "glozz-alphabetize": glozz_1,
     "glozz-randomize": glozz_2,
