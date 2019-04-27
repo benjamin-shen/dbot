@@ -174,18 +174,16 @@ def weather_0():
     temp = str(temperature['temp'])
     low = str(temperature['temp_min'])
     high = str(temperature['temp_max'])
-    result += status + ", " + temp + "F\n"
-    result += "high of " + high + "F, low of " + low + "F"
+    result += status + ", currently " + temp + "degrees\n"
+    result += "high of " + high + ", low of " + low
     send_message(result)
     return result
 def weather_1():
-    send_message("Not written yet.")
-    return result
     result = ""
-    forecasts = weather().get_forecast(42.4396, -76.4969)
-    for w in forecasts:
-        result += w.get_reference_time('date') + ": "
-        result += w.get_detailed_status() + ", " + str(weather.get_temperature('fahrenheit')['temp']) + "F\n"
+    data = requests.get('https://api.weather.gov/gridpoints/BGM/44,69/forecast').json()
+    forecasts = data['properties']['periods']
+    for weather in forecasts:
+        result += weather.name + ": " + weather.detailedForecast + "\n"
     send_message(result)
     return result
 def dinner():
