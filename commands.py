@@ -168,7 +168,7 @@ def weather():
     return owm
 def weather_0():
     result = ""
-    data = weather().weather_at_coords(42.4440,76.5019).get_weather()
+    data = weather().weather_at_coords(42.4396, -76.4969).get_weather()
     status = data.get_detailed_status()
     temperature = data.get_temperature('fahrenheit')
     temp = str(temperature['temp'])
@@ -180,7 +180,7 @@ def weather_0():
     return result
 def weather_1():
     result = ""
-    forecasts = weather().daily_forecast('Ithaca,NY', limit=6).get_forecast()
+    forecasts = weather().three_hours_forecast(42.4396,-76.4969)
     for w in forecasts:
         result += w.get_reference_time('date') + ": "
         result += w.get_detailed_status() + ", " + str(weather.get_temperature('fahrenheit')['temp']) + "F\n"
@@ -300,7 +300,7 @@ functions = {
     "time": time_0,
     "time-day": time_1,
     "weather": weather_0,
-    "weather-rain": weather_1,
+    "weather-forecast": weather_1,
     "bus": bus,
     "dinner": dinner,
     "dinner-west": dinner_1,
