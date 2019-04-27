@@ -185,7 +185,7 @@ def weather_0():
     temp = str(temperature['temp'])
     low = str(temperature['temp_min'])
     high = str(temperature['temp_max'])
-    result += status + ", currently " + temp + "degrees\n"
+    result += status + ", currently " + temp + "F\n"
     result += "high of " + high + ", low of " + low
     send_message(result)
     return result
@@ -194,7 +194,7 @@ def weather_1():
     data = requests.get('https://api.weather.gov/gridpoints/BGM/44,69/forecast').json()
     forecasts = data['properties']['periods']
     for weather in forecasts:
-        result += weather['name'] + ": " + weather['detailedForecast'] + "\n"
+        result += weather['name'] + ": " + weather['shortForecast'] + ", " + weather['temperature'] + "F\n"
     send_message(result)
     return result
 def dinner():
