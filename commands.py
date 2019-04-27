@@ -180,7 +180,7 @@ def weather_0():
     return result
 def weather_1():
     result = ""
-    forecasts = weather().three_hours_forecast(42.4396,-76.4969)
+    forecasts = weather().three_hours_forecast(42.4396, -76.4969)
     for w in forecasts:
         result += w.get_reference_time('date') + ": "
         result += w.get_detailed_status() + ", " + str(weather.get_temperature('fahrenheit')['temp']) + "F\n"
