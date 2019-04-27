@@ -5,5 +5,5 @@ time: interpret current time (-day)
 weather: provide weather conditions in Ithaca (-forecast)
 bus: give the next bus time for the 90 from 505 to North
 dinner: choose a random dining hall (-west)
-glozz: list members of GLOZZ (-alphabetize, -randomize, -single)
+glozz: list members of GLOZZ (-alphabetize, -randomize, -single, -ism)
 tussle: fight another person, can't target group creator or botmaster (@member/s)

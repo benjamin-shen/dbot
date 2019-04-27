@@ -324,7 +324,7 @@ functions = {
 }
 
 # other commands
-def inches():
+def dick():
     length = random.randint(0,12)
     result = "("
     if length==0:
@@ -336,6 +336,16 @@ def inches():
     else:
         result += str(length) + " inches"
     result += ")"
+    send_message(result)
+    return result
+def asshole():
+    name = last_message('name')
+    result = name + " is a "
+    chance = random.randint(1,2)
+    if chance==1:
+        result += "real nice guy."
+    else:
+        result += "horse's ass."
     send_message(result)
     return result
 def tussle(participants):
@@ -376,8 +386,8 @@ def tussle(participants):
 # implicit commands
 def dclub():
     result = ""
-    chance = random.randint(1,100)
-    if chance<=2:
+    chance = random.randint(1,50)
+    if chance<=1:
         id = last_message('sender_id')
         if id=='43405903': # Dubem
             result = "We have " + str(random.randint(1,4)) + " out of 4 voice parts."

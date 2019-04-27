@@ -88,7 +88,9 @@ def bot_commanded(commands):
     return 'ok'
 def bot_understood(keyword):
     if keyword=='dick':
-        dbot.inches()
+        dbot.dick()
+    elif keyword=='asshole':
+        dbot.asshole()
     else:
         dbot.send_message(dbot.keywordDict[keyword]);
     return 'ok'
