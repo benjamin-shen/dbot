@@ -183,7 +183,7 @@ def weather_1():
     data = requests.get('https://api.weather.gov/gridpoints/BGM/44,69/forecast').json()
     forecasts = data['properties']['periods']
     for weather in forecasts:
-        result += weather.name + ": " + weather.detailedForecast + "\n"
+        result += weather['name'] + ": " + weather['detailedForecast'] + "\n"
     send_message(result)
     return result
 def dinner():
