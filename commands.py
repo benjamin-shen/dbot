@@ -179,7 +179,7 @@ def weather():
     return owm
 def weather_0():
     result = ""
-    data = weather().weather_at_coords(42.4396, -76.4969).get_weather()
+    data = weather().weather_at_coords(42.451309,-76.482068).get_weather()
     status = data.get_detailed_status()
     temperature = data.get_temperature('fahrenheit')
     temp = str(temperature['temp'])
