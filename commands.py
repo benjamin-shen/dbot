@@ -167,18 +167,23 @@ def weather():
     owm = pyowm.OWM(os.getenv('WEATHER_APIKEY'))
     return owm
 def weather_0():
-    data = weather().weather_at_coords(42.4440,76.5019)
-    status = data.get_status()
-    temp = data.get_temperature('fahrenheit')['temp']
-    result = status + ", " + temp + "F"
+    result = ""
+    data = weather().weather_at_coords(42.4440,76.5019).get_weather()
+    status = data.get_detailed_status()
+    temperature = data.get_temperature('fahrenheit')
+    temp = str(temperature['temp'])
+    low = str(temperature['temp_min'])
+    high = str(temperature['temp_max'])
+    result += status + ", " + temp + "F\n"
+    # result += "high of " + high + "F, low of " + low + "F"
     send_message(result)
     return result
 def weather_1():
     result = ""
-    forecasts = weather().daily_forecast('Ithaca,NY', limit=6).get_weathers()
-    rainydays = forecasts.when_rain()
-    for days in rainydays:
-        result += days + "\n"
+    forecasts = weather().daily_forecast('Ithaca,NY', limit=6).get_forecast()
+    for w in forecasts:
+        result += w.get_reference_time('date') + ": "
+        result += w.get_detailed_status() + ", " + str(weather.get_temperature('fahrenheit')['temp']) + "F\n"
     send_message(result)
     return result
 def dinner():
