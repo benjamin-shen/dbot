@@ -50,13 +50,24 @@ with open('dictionaries/keywords.txt', 'r') as file:
 def send_message(to_send):
     time.sleep(1)
     vars()
+    result = to_send
+    while len(result) > 1000: # handle character limit
+        i = result[:1000].rfind(" ") # don't split a character
+        if i != -1:
+            i += 1
+        else:
+            i = 1000
+        send_shortmessage(result[:i])
+        result = result[i:]
+    send_shortmessage(result)
+    return to_send
+def send_shortmessage(to_send):
     url  = 'https://api.groupme.com/v3/bots/post?token=' + access_token
     data = {
         'bot_id' : bot_id,
         'text'   : to_send.strip(),
     }
-    requests.post(url, json=data)
-    return to_send
+    requests.post(url, json=data) # send message via post
 def get_messages():
     vars()
     url = 'https://api.groupme.com/v3/groups/'+group_id+'/messages?token='+access_token
@@ -182,11 +193,9 @@ def weather_1():
     result = ""
     data = requests.get('https://api.weather.gov/gridpoints/BGM/44,69/forecast').json()
     forecasts = data['properties']['periods']
-    print(forecasts)
     for weather in forecasts:
         result += weather['name'] + ": " + weather['detailedForecast'] + "\n"
     send_message(result)
-    print(result)
     return result
 def dinner():
     result = ""
