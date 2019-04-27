@@ -175,12 +175,14 @@ def weather_0():
     low = str(temperature['temp_min'])
     high = str(temperature['temp_max'])
     result += status + ", " + temp + "F\n"
-    # result += "high of " + high + "F, low of " + low + "F"
+    result += "high of " + high + "F, low of " + low + "F"
     send_message(result)
     return result
 def weather_1():
+    send_message("Not written yet.")
+    return result
     result = ""
-    forecasts = weather().three_hours_forecast(42.4396, -76.4969)
+    forecasts = weather().get_forecast(42.4396, -76.4969)
     for w in forecasts:
         result += w.get_reference_time('date') + ": "
         result += w.get_detailed_status() + ", " + str(weather.get_temperature('fahrenheit')['temp']) + "F\n"
