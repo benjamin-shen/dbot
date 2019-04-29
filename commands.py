@@ -303,15 +303,15 @@ def translate(text):
     lang = translator.detect(text).lang
     if lang != 'en':
         result += translator.translate(text).text
-    return result
+    return result, lang
 def translate_0():
     result = ""
     message = get_messages()[1]
     name = message['name']
     text = message['text']
-    translated = translate(text)
-    if translated != "":
-        result += name + ": " + translated
+    translated_text = translate(text)[0]
+    if translated_text != "":
+        result += name + ": " + translated_text
     else:
         result += "This shit's in English, dude."
     send_message(result)
@@ -322,7 +322,9 @@ def translate_1():
     for message in messages[len(messages)-1:0:-1]:
         name = message['name']
         text = message['text']
-        result += name + ": " + translate(text) + " (" + text + ")\n"
+        translated = translate(text)
+        if translated[1] != 'en':
+            result += name + ": " + translate(text)[0] + " (" + text + ")\n"
     if result != "":
         send_message(result)
     return result
