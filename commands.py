@@ -307,6 +307,8 @@ def translate_0():
         result += msg + "\n"
     send_message(result)
     return result
+def translate_1():
+    return "not written"
 def tussle_0():
     result = "Tussle attempted."
     return result
