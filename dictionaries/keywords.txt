@@ -1,7 +1,5 @@
 dbot: I heard my name.
-hbd: Happy Birthday!
-happy bday: Happy Birthday!
-happy birthday: Happy Birthday!
+glozz: It's a twister! Follow the yellow brick road. Somewhere over the rainbow... the wonderful wizard of GLOZZ!
 robert: BABAAA!
 steve: Dr. Steeeeve!
 general: *salute*
@@ -25,6 +23,9 @@ aber: Aber des Herrn Wort
 movement 6: Blow your wad in Movement 7.
 movement vi: Blow your wad in Movement VII.
 
+hbd: Happy Birthday!
+happy bday: Happy Birthday!
+happy birthday: Happy Birthday!
 gang gang: gucci gang
 cookie: C is for cookie, that's good enough for me.
 platypus: A platypus?
@@ -32,6 +33,7 @@ perry: Curse you Perry the Platypus!
 dave: Hey, I know Dave!
 
 cum: ME! CUM! ON MY DAZZLED FACE!
+sister: She put out, hummm
 cotton eye joe: Where did you come from, where did you go?
 whistle: Who the fuck is whistling, I'll kill them.
 whistling: Who the fuck is whistling, I'll kill them.
@@ -44,6 +46,8 @@ gleeton: South Baker
 louies: Half Maven XXX
 louie's: cajun fries
 asshole: You're a horse's ass.
+ass: Yeah I eat ass.
+eat ass: Excite her, \nAnnoy her, \nTrust her, \n\nAccept her, \n Sensualize her, \nSuck her butthole.
 
 woosh: WOW kid you just got r/WOOOOOOSHED!!!! "Wooosh" means you didn't get the joke, as in the sound made when the joke "woooshes" over your head. I bet you're too stupid to get it, IDIOT!! My joke was so thoughtfully crafted and took me a total of 3 minutes, you SHOULD be laughing. What's that? My joke is bad? I think that's just because you failed. I outsmarted you, nitwit. In conclusion, I am posting this to the community known as "r/Wooooosh" to claim my internet points in your embarrassment. Imbecile. The Germans refer to this action as "Schadenfreude," which means "harm-joy". WOW! Another reference I had to explain to you. I am going to cease this conversation for I do not converse with simple minded persons.
 endgame: Ok, so hear me out. In the Phineas and Ferb movie they create a dimensional portal device that sets off the whole movie and they have also created some of the most powerful superweapons known to man. Phineas and Ferb would obviously be able to murder Thanos with absolute ease using the arsenal of deadly weapons that give them the power of every single Avenger combined, such as an off brand Ironman suit or a potion that is so potent it causes the entire universe to be enlarged. They have even made 2 fighting mechs out of a treehouse that are the size of a building. Thanks for coming to my Ted talk.

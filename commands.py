@@ -228,7 +228,7 @@ def glozz():
         for line in glozzSA:
             name = line.strip()
             if len(name) > 0: # verify name is valid
-                i = name.find("//")
+                i = name.find("|")
                 if i != -1:
                     name = name[:i] # ignore comment
                 glozz.append(name)
