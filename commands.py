@@ -305,9 +305,9 @@ def translate_0():
     translator = Translator()
     translated = translator.translate(text)
     lang = translated.dest
-    if lang!='en':
-        msg = translated.text
-        result += name + ": " msg + "\n"
+    #if lang!='en':
+    msg = translated.text
+    result += name + ": " + msg + "\n"
     send_message(result)
     return result
 def translate_1():
