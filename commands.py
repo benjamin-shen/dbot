@@ -297,20 +297,35 @@ def bus():
     send_message(result)
     return result
 from googletrans import Translator
+def translate(text):
+    result = ""
+    translator = Translator()
+    lang = translator.detect(text).lang
+    if lang != 'en':
+        result += translator.translate(text).text
+    return result
 def translate_0():
     result = ""
     message = get_messages()[1]
     name = message['name']
     text = message['text']
-    translator = Translator()
-    lang = translator.detect(text).lang
-    if lang!='en':
-        msg = translator.translate(text).text
-        result += name + ": " + msg + "\n"
+    translated = translate(text)
+    if translated != "":
+        result += name + ": " + translated
+    else:
+        result += "This shit's in English, dude."
     send_message(result)
     return result
 def translate_1():
-    return "not written"
+    result = ""
+    messages = get_messages()
+    for message in messages[len(messages)-1:0:-1]:
+        name = message['name']
+        text = message['text']
+        result += name + ": " + translate(text) + " (" + text + ")\n"
+    if result != "":
+        send_message(result)
+    return result
 def tussle_0():
     result = "Tussle attempted."
     return result
