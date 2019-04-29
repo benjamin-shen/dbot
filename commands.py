@@ -72,7 +72,7 @@ def get_messages():
     vars()
     url = 'https://api.groupme.com/v3/groups/'+group_id+'/messages?token='+access_token
     messages = requests.get(url).json()['response']['messages']
-    return messages # list of dictionaries; last 20 messages
+    return messages # list of 20 dictionaries
 def last_message(key):
     result = ""
     msg = get_messages()[0]
@@ -299,13 +299,15 @@ def bus():
 from googletrans import Translator
 def translate_0():
     result = ""
-    text = last_message('text')
+    message = get_messages()[1]
+    name = message['name']
+    text = message['text']
     translator = Translator()
     translated = translator.translate(text)
     lang = translated.dest
     if lang!='en':
         msg = translated.text
-        result += msg + "\n"
+        result += name + ": " msg + "\n"
     send_message(result)
     return result
 def translate_1():
