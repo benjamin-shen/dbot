@@ -123,7 +123,7 @@ def add_member(nickname,userid):
     return added
 
 # basic commands
-def d_help():
+def d_help_0():
     result = ""
     for key,value in commandDict.items():
         result += "dbot " + key + ": " + value + "\n\n"
@@ -135,7 +135,7 @@ def d_help_1():
     result += "Keywords, regardless of white space, will trigger dbot to respond. Try to discover them all! The list of understood keywords is updated frequently."
     send_message(result)
     return result
-def info():
+def info_0():
     result = "dbot is a GroupMe bot that responds to commands and recognizes keywords. The d stands for Douglas. The profile picture is GORT."
     send_message(result)
     return result
@@ -149,76 +149,6 @@ def info_2():
     return result
 def hello():
     result = "Hello, " + last_message('name') + "."
-    send_message(result)
-    return result
-def time_0():
-    result = ""
-    now = datetime.now(pytz.timezone('US/Eastern'))
-    day = now.strftime('%w')
-    hour = now.strftime('%I')
-    min = now.strftime('%M')
-    ampm = now.strftime('%p')
-    if day=='2' and 4<int(hour) and int(hour)<8:
-        result += "Come to RPCC!\n"
-    elif day=='3':
-        result += "Happy Wednesday!\n"
-    result += "It is currently " + hour + ":" + min + " " + ampm + "."
-    send_message(result)
-    return result
-def time_1():
-    result = ""
-    now = datetime.now(pytz.timezone('US/Eastern'))
-    day = now.strftime('%A')
-    date = now.strftime('%x')
-    result += "Today is " + day + ", " + date + "."
-    send_message(result)
-    return result
-import pyowm
-def weather():
-    owm = pyowm.OWM(os.getenv('WEATHER_APIKEY'))
-    return owm
-def weather_0():
-    result = ""
-    data = weather().weather_at_coords(42.451309,-76.482068).get_weather()
-    status = data.get_detailed_status()
-    temperature = data.get_temperature('fahrenheit')
-    temp = str(temperature['temp'])
-    low = str(temperature['temp_min'])
-    high = str(temperature['temp_max'])
-    result += status + ", currently " + temp + "F\n"
-    result += "high of " + high + ", low of " + low
-    send_message(result)
-    return result
-def weather_1():
-    result = ""
-    data = requests.get('https://api.weather.gov/gridpoints/BGM/44,69/forecast').json()
-    forecasts = data['properties']['periods']
-    for weather in forecasts:
-        result += weather['name'] + ": " + weather['shortForecast'] + ", " + str(weather['temperature']) + "F\n"
-    send_message(result)
-    return result
-def dinner():
-    result = ""
-    halls = ['RPCC','Appel','Risley','Okenshields','Becker','Bethe','Cook','Keeton','Rose']
-    result += random.choice(halls)
-    send_message(result)
-    return result
-def dinner_1():
-    result = ""
-    halls = ['Becker','Bethe','Cook','Keeton','Rose']
-    result += random.choice(halls)
-    send_message(result)
-    return result
-from bus import stop1701
-def bus():
-    result = ""
-    time = stop1701.next()
-    if time==None:
-        result += "https://realtimetcatbus.availtec.com/InfoPoint/Stops/Stop/1701 is down."
-    elif time=='':
-        result += "No 90 buses anytime soon. Try Google Maps."
-    else:
-        result += "The next 90 is at " + time + "."
     send_message(result)
     return result
 def glozz():
@@ -296,30 +226,113 @@ def glozz_4():
     result = "No one:\n" + random.choice(isms)
     send_message(result)
     return result
+def dinner_0():
+    result = ""
+    halls = ['RPCC','Appel','Risley','Okenshields','Becker','Bethe','Cook','Keeton','Rose']
+    result += random.choice(halls)
+    send_message(result)
+    return result
+def dinner_1():
+    result = ""
+    halls = ['Becker','Bethe','Cook','Keeton','Rose']
+    result += random.choice(halls)
+    send_message(result)
+    return result
+def time_0():
+    result = ""
+    now = datetime.now(pytz.timezone('US/Eastern'))
+    day = now.strftime('%w')
+    hour = now.strftime('%I')
+    min = now.strftime('%M')
+    ampm = now.strftime('%p')
+    if day=='2' and 4<int(hour) and int(hour)<8:
+        result += "Come to RPCC!\n"
+    elif day=='3':
+        result += "Happy Wednesday!\n"
+    result += "It is currently " + hour + ":" + min + " " + ampm + "."
+    send_message(result)
+    return result
+def time_1():
+    result = ""
+    now = datetime.now(pytz.timezone('US/Eastern'))
+    day = now.strftime('%A')
+    date = now.strftime('%x')
+    result += "Today is " + day + ", " + date + "."
+    send_message(result)
+    return result
+import pyowm
+def weather():
+    owm = pyowm.OWM(os.getenv('WEATHER_APIKEY'))
+    return owm
+def weather_0():
+    result = ""
+    data = weather().weather_at_coords(42.451309,-76.482068).get_weather()
+    status = data.get_detailed_status()
+    temperature = data.get_temperature('fahrenheit')
+    temp = str(temperature['temp'])
+    low = str(temperature['temp_min'])
+    high = str(temperature['temp_max'])
+    result += status + ", currently " + temp + "F\n"
+    result += "high of " + high + ", low of " + low
+    send_message(result)
+    return result
+def weather_1():
+    result = ""
+    data = requests.get('https://api.weather.gov/gridpoints/BGM/44,69/forecast').json()
+    forecasts = data['properties']['periods']
+    for weather in forecasts:
+        result += weather['name'] + ": " + weather['shortForecast'] + ", " + str(weather['temperature']) + "F\n"
+    send_message(result)
+    return result
+from bus import stop1701
+def bus():
+    result = ""
+    time = stop1701.next()
+    if time==None:
+        result += "https://realtimetcatbus.availtec.com/InfoPoint/Stops/Stop/1701 is down."
+    elif time=='':
+        result += "No 90 buses anytime soon. Try Google Maps."
+    else:
+        result += "The next 90 is at " + time + "."
+    send_message(result)
+    return result
+from googletrans import Translator
+def translate_0():
+    result = ""
+    text = last_message('text')
+    translator = Translator()
+    lang = translator.detect(text)
+    if lang!='en':
+        msg = translator.translate(text)
+        result += msg + "\n"
+    send_message(result)
+    return result
 def tussle_0():
     result = "Tussle attempted."
     return result
 
 # function dictionary
 functions = {
-    "help": d_help,
+    "help": d_help_0,
     "help-syntax": d_help_1,
-    "info": info,
+    "info": info_0,
     "info-creator": info_1,
     "info-github": info_2,
     "hello": hello,
-    "time": time_0,
-    "time-day": time_1,
-    "weather": weather_0,
-    "weather-forecast": weather_1,
-    "bus": bus,
-    "dinner": dinner,
-    "dinner-west": dinner_1,
     "glozz": glozz_0,
     "glozz-alphabetize": glozz_1,
     "glozz-randomize": glozz_2,
     "glozz-single": glozz_3,
     "glozz-ism": glozz_4,
+    "dinner": dinner_0,
+    "dinner-west": dinner_1,
+    "time": time_0,
+    "time-day": time_1,
+    "weather": weather_0,
+    "weather-forecast": weather_1,
+    "bus": bus,
+    "translate": translate_0,
+    "translate-all": translate_1,
     "tussle": tussle_0,
 }
 

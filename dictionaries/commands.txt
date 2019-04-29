@@ -1,9 +1,10 @@
 help: list the commands I know (-syntax)
 info: learn about me (-creator)
 hello: be greeted by me
+glozz: list members of GLOZZ (-alphabetize, -randomize, -single, -ism)
+dinner: choose a random dining hall (-west)
 time: interpret current time (-day)
 weather: provide weather conditions in Ithaca (-forecast)
 bus: give the next bus time for the 90 from 505 to North
-dinner: choose a random dining hall (-west)
-glozz: list members of GLOZZ (-alphabetize, -randomize, -single, -ism)
+translate: translates last message (-all)
 tussle: fight another person, can't target group creator or botmaster (@member/s)
