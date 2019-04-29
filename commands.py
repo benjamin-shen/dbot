@@ -303,11 +303,10 @@ def translate_0():
     name = message['name']
     text = message['text']
     translator = Translator()
-    translated = translator.translate(text)
-    lang = translated.dest
-    #if lang!='en':
-    msg = translated.text
-    result += name + ": " + msg + "\n"
+    lang = translator.detect(text).lang
+    if lang!='en':
+        msg = translator.translate(text).text
+        result += name + ": " + msg + "\n"
     send_message(result)
     return result
 def translate_1():
