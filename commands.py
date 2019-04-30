@@ -1,15 +1,16 @@
 # dbot
+from bus import stop1701
 import random
 import time
 from datetime import datetime
 import pytz
-import requests
+import pyowm
+from googletrans import Translator
 
 # access GroupMe
+import requests
 import os
 import json
-from urllib.parse import urlencode
-from urllib.request import Request, urlopen
 
 # config vars
 access_token = 'error'
@@ -245,8 +246,11 @@ def time_0():
     hour = now.strftime('%I')
     min = now.strftime('%M')
     ampm = now.strftime('%p')
-    if day=='2' and 4<int(hour) and int(hour)<8:
-        result += "Come to RPCC!\n"
+    if day=='2':
+        firstappearance = datetime.datetime(2019,3,5,0,pytz.timezone('US/Eastern'))
+        delta = now - firstappearance
+        if delta%2 == 0:
+            result += "Say hi to Reginald!\n"
     elif day=='3':
         result += "Happy Wednesday!\n"
     result += "It is currently " + hour + ":" + min + " " + ampm + "."
@@ -260,7 +264,6 @@ def time_1():
     result += "Today is " + day + ", " + date + "."
     send_message(result)
     return result
-import pyowm
 def weather():
     owm = pyowm.OWM(os.getenv('WEATHER_APIKEY'))
     return owm
@@ -284,7 +287,6 @@ def weather_1():
         result += weather['name'] + ": " + weather['shortForecast'] + ", " + str(weather['temperature']) + "F\n"
     send_message(result)
     return result
-from bus import stop1701
 def bus():
     result = ""
     time = stop1701.next()
@@ -296,7 +298,6 @@ def bus():
         result += "The next 90 is at " + time + "."
     send_message(result)
     return result
-from googletrans import Translator
 def translate(text):
     result = ""
     translator = Translator()
