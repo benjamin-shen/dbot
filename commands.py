@@ -249,8 +249,8 @@ def time_0():
     ampm = est.strftime('%p')
     if day=='2':
         firstappearance = datetime(2019,3,5)
-        delta = (now-firstappearance).weeks
-        if delta%2 == 0:
+        delta = now-firstappearance
+        if delta.days%14 == 0:
             result += "Say hi to Reginald!\n"
     elif day=='3':
         result += "Happy Wednesday!\n"
