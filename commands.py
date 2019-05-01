@@ -340,22 +340,21 @@ def translate_1():
 def identify():
     result = ""
     message = get_messages()[1]
-    nickname = message['name']
-    text = message['text']
     if message['sender_id'] == os.getenv('GROUPME_DBOT'):
+        result += "Hi, I'm dbot!"
+    elif message['sender_type'] == 'bot':
+        result += "It's another bot!"
+    elif message['sender_type'] == 'user':
+        nickname = message['name']
+        text = message['text']
+        members = get_members()
+        for member in members:
+            if member['nickname']==nickname:
+                result += member['name']
+                result += ": " + text
+                break
+    else:
         result += "Try 'dbot help'."
-        send_message(result)
-        return result
-    if message['sender_type'] == 'bot':
-        result += "It's a bot!"
-        send_message(result)
-        return result
-    members = get_members()
-    for member in members:
-        if member['nickname']==nickname:
-            result += member['name']
-            result += ": " + text
-            break
     send_message(result)
     return result
 def tussle_0():
