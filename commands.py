@@ -241,14 +241,15 @@ def dinner_1():
     return result
 def time_0():
     result = ""
-    now = datetime.now(pytz.timezone('US/Eastern'))
-    day = now.strftime('%w')
-    hour = now.strftime('%I')
-    min = now.strftime('%M')
-    ampm = now.strftime('%p')
+    now = datetime.now()
+    est = now.astimezone(pytz.timezone('US/Eastern'))
+    day = est.strftime('%w')
+    hour = est.strftime('%I')
+    min = est.strftime('%M')
+    ampm = est.strftime('%p')
     if day=='2':
-        firstappearance = datetime.datetime(2019,3,5,0,pytz.timezone('US/Eastern'))
-        delta = now - firstappearance
+        firstappearance = datetime(2019,3,5)
+        delta = (now-firstappearance).weeks
         if delta%2 == 0:
             result += "Say hi to Reginald!\n"
     elif day=='3':
