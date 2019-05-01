@@ -2,7 +2,7 @@ help: list the commands I know (-syntax)
 info: learn about me (-creator)
 hello: be greeted by me
 glozz: list members of GLOZZ (-alphabetize, -randomize, -single, -ism)
-dinner: choose a random dining hall (-west)
+dinner: choose a random dining hall (-west, -north)
 time: interpret current time (-day)
 weather: provide weather conditions in Ithaca (-forecast)
 bus: give the next bus time for the 90 from 505 to North

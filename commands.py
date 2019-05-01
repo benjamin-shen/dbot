@@ -239,6 +239,12 @@ def dinner_1():
     result += random.choice(halls)
     send_message(result)
     return result
+def dinner_2():
+    result = ""
+    halls = ['RPCC','Appel','Risley']
+    result += random.choice(halls)
+    send_message(result)
+    return result
 def time_0():
     result = ""
     now = datetime.now()
@@ -350,6 +356,7 @@ functions = {
     "glozz-ism": glozz_4,
     "dinner": dinner_0,
     "dinner-west": dinner_1,
+    "dinner-north": dinner_2,
     "time": time_0,
     "time-day": time_1,
     "weather": weather_0,
