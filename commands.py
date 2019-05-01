@@ -135,7 +135,7 @@ def d_help_0():
 def d_help_1():
     result = "'dbot [command]' or \n'dbot [command] -[parameter]' or \n'dbot [command] - [parameter]' \nexecutes the command with a parameter. Invalid syntax is ignored. Invalid parameters are ignored.\n"
     result += "dbot can only recognize one parameter per command.\n"
-    result += "Keywords, regardless of white space, will trigger dbot to respond. Try to discover them all! The list of understood keywords is updated frequently."
+    result += "Keywords, regardless of white space, will (possibly) trigger dbot to respond. Try to discover them all! The list of understood keywords is updated frequently."
     send_message(result)
     return result
 def info_0():

@@ -1,6 +1,7 @@
 # dbot
-import os
 import commands as dbot
+import os
+import random
 import time
 
 #flask
@@ -87,10 +88,11 @@ def bot_commanded(commands):
         i += j
     return 'ok'
 def bot_understood(keyword):
-    if keyword=='dick':
-        dbot.dick()
-    elif keyword=='asshole':
-        dbot.asshole()
-    else:
-        dbot.send_message(dbot.keywordDict[keyword]);
+    if random.randint(1,10) < 5:
+        if keyword=='dick':
+            dbot.dick()
+        elif keyword=='asshole':
+            dbot.asshole()
+        else:
+            dbot.send_message(dbot.keywordDict[keyword]);
     return 'ok'
