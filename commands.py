@@ -338,13 +338,15 @@ def translate_1():
         send_message(result)
     return result
 def identify():
+    result = ""
     message = get_messages()[1]
     nickname = message['name']
     text = message['text']
     members = get_members()
     for member in members:
         if member['nickname']==nickname:
-            result = member['name']
+            result += member['name']
+            result += ": " + text
             break
     send_message(result)
     return result
