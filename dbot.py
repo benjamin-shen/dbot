@@ -1,6 +1,7 @@
 # dbot
-import os
 import commands as dbot
+import os
+import random
 import time
 
 #flask
@@ -87,14 +88,6 @@ def bot_commanded(commands):
         i += j
     return 'ok'
 def bot_understood(keyword):
-    result = dbot.keywordDict[keyword]
-    while len(result) > 1000: # handle character limit
-        i = result[:1000].rfind(" ") # don't split a character
-        if i != -1:
-            i += 1
-        else:
-            i = 1000
-        dbot.send_message(result[:i])
-        result = result[i:]
-    dbot.send_message(result);
+    if random.randint(1,10) < 5:
+        dbot.send_message(dbot.keywordDict[keyword]);
     return 'ok'
