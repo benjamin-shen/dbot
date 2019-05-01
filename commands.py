@@ -99,7 +99,8 @@ def get_memberids():
         nickname = member['nickname']
         id = member['id']
         user_id = member['user_id']
-        result[nickname] = {'id':id,'user_id':user_id}
+        muted = member['muted']
+        result[nickname] = {'id':id,'user_id':user_id,'muted':muted}
     return result
 def kick_member(memberid):
     time.sleep(2)
@@ -110,7 +111,7 @@ def kick_member(memberid):
     }
     kicked = requests.post(url, json=data)
     return kicked
-def add_member(nickname,userid):
+def add_member(nickname,userid,muted):
     time.sleep(2)
     vars()
     url = 'https://api.groupme.com/v3/groups/'+group_id+'/members/add?token='+access_token
@@ -118,6 +119,7 @@ def add_member(nickname,userid):
         'members': [{
             'nickname': nickname,
             'user_id':  userid,
+            'muted': muted,
         }]
     }
     added = requests.post(url, json=data)
@@ -438,12 +440,13 @@ def tussle(participants):
             member = memberids[nickname]
             id = member['id']
             user_id = member['user_id']
+            muted = member['muted']
             if user_id==initiatorid:
                 send_message(nickname + " tripped and punched himself in the face.")
             else:
                 send_message(nickname + " was bested by " + initiator + "!")
             if kick_member(id):
-                add_member(nickname,user_id)
+                add_member(nickname,user_id,muted)
             return True
     send_message("Try 'dbot help'.")
     return False
