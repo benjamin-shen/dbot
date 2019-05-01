@@ -337,6 +337,17 @@ def translate_1():
     if result != "":
         send_message(result)
     return result
+def identify():
+    message = get_messages()[1]
+    nickname = message['name']
+    text = message['text']
+    members = get_members()
+    for member in members:
+        if member['nickname']==nickname:
+            result = member['name']
+            break
+    send_message(result)
+    return result
 def tussle_0():
     result = "Tussle attempted."
     return result
@@ -364,6 +375,7 @@ functions = {
     "bus": bus,
     "translate": translate_0,
     "translate-all": translate_1,
+    "identify": identify,
     "tussle": tussle_0,
 }
 
