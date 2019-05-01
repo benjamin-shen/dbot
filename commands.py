@@ -348,7 +348,8 @@ def identify():
             result += member['name']
             result += ": " + text
             break
-    send_message(result)
+    if result != "":
+        send_message(result)
     return result
 def tussle_0():
     result = "Tussle attempted."
