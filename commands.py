@@ -250,6 +250,7 @@ def time_0():
     if day=='2':
         firstappearance = datetime(2019,3,5)
         delta = now-firstappearance
+        print(delta.days)
         if delta.days%14 == 0:
             result += "Say hi to Reginald!\n"
     elif day=='3':
@@ -259,9 +260,10 @@ def time_0():
     return result
 def time_1():
     result = ""
-    now = datetime.now(pytz.timezone('US/Eastern'))
-    day = now.strftime('%A')
-    date = now.strftime('%x')
+    now = datetime.now()
+    est = now.astimezone(pytz.timezone('US/Eastern'))
+    day = est.strftime('%A')
+    date = est.strftime('%x')
     result += "Today is " + day + ", " + date + "."
     send_message(result)
     return result
