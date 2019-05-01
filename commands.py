@@ -250,8 +250,7 @@ def time_0():
     if day=='2':
         firstappearance = datetime(2019,3,5)
         delta = now-firstappearance
-        print(delta.days)
-        if delta.days%14 == 0:
+        if delta.days%14 == 1:
             result += "Say hi to Reginald!\n"
     elif day=='3':
         result += "Happy Wednesday!\n"
