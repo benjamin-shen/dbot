@@ -348,7 +348,9 @@ def identify():
             result += member['name']
             result += ": " + text
             break
-    if result != "":
+    if result == "":
+        send_message("Try 'dbot help'.")
+    else:
         send_message(result)
     return result
 def tussle_0():
