@@ -342,7 +342,7 @@ def identify():
     message = get_messages()[1]
     nickname = message['name']
     text = message['text']
-    if data['sender_id'] == os.getenv('GROUPME_DBOT'):
+    if message['sender_id'] == os.getenv('GROUPME_DBOT'):
         result += "Try 'dbot help'."
         send_message(result)
         return result
