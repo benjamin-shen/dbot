@@ -342,16 +342,21 @@ def identify():
     message = get_messages()[1]
     nickname = message['name']
     text = message['text']
+    if data['sender_id'] == os.getenv('GROUPME_DBOT'):
+        result += "Try 'dbot help'."
+        send_message(result)
+        return result
+    if message['sender_type'] == 'bot':
+        result += "It's a bot!"
+        send_message(result)
+        return result
     members = get_members()
     for member in members:
         if member['nickname']==nickname:
             result += member['name']
             result += ": " + text
             break
-    if result == "":
-        send_message("Try 'dbot help'.")
-    else:
-        send_message(result)
+    send_message(result)
     return result
 def tussle_0():
     result = "Tussle attempted."
