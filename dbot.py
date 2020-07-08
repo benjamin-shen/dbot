@@ -88,11 +88,10 @@ def bot_commanded(commands):
         i += j
     return 'ok'
 def bot_understood(keyword):
-    if random.randint(1,10) <= 1:
-        if keyword=='dick':
-            dbot.dick()
-        elif keyword=='asshole':
-            dbot.asshole()
-        else:
-            dbot.send_message(dbot.keywordDict[keyword]);
+    if keyword=='dick' and random.randint(1,10) <= 1:
+        dbot.dick()
+    elif keyword=='asshole' and random.randint(1,10) <= 1:
+        dbot.asshole()
+    else:
+        dbot.send_message(dbot.keywordDict[keyword]);
     return 'ok'
