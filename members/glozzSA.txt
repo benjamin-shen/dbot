@@ -2,15 +2,15 @@ Amy: Do you want a muffin?
 Caroline H: Shoot me goot!
 Caroline L: String.format("Hey guys, %s", programmingJoke); | I'm so mad I only got an A.
 Catherine: Is this Malaysia... or Texas? | Um, Robert... that's not how it's pronounced.
-Emily: opposite over adjacent
+Emily: 
 Evelyn: Who wants to play Bananagrams?
 Hanna: Oh hi! | I'm sooooo tired. | I'm not pre-med! Wait, actually...
 Joelle: Guys I'm so stressed. | The plants need watering.
 Julia: Burning crops is not a healthy way to deal with anger.
-Nina: What is Glozz?
-Olivia: So anyways, I was tryna astral project
-Raye: I'm not Rui.
+Nina: 
+Olivia: So anyways, I started astral projecting
+Raye: 
 Sanjeevani: Dude, I needa go to bed.
 Sarah: FUCK I MISS YOU GUYS LET'S HANG OUT! | You deserve it, queen!
 Sophia: Physucks
-Zoe: Here's the TRUTH about the murder hornets.
+Zoe: Here's the truth about the murder hornets.

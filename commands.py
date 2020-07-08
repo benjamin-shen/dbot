@@ -223,7 +223,9 @@ def glozz_4():
             name = member[:i]
             quotes = member[i+1:].split("|")
             for quote in quotes:
-                isms.append(name + ": \"" + quote.strip() + "\"")
+                quote = quote.strip()
+                if len(quote) > 0:
+                    isms.append(name + ": \"" + quote + "\"")
     result = random.choice(isms)
     send_message(result)
     return result
