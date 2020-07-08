@@ -1,11 +1,16 @@
-Amy: "I read for fun." | 18fa
-Caroline H: "I have friends outside of GLOZZ and I only ever eat with them." | 18fa
-Caroline L: "I'm so nervous, I might get below a 95 on the prelim." | 18fa
-Catherine: "Is this Malaysia... or Texas?" | 18fa
-Hanna: "Oh hi!" | 18fa
-Joelle: "..." | 19sp
-Julia: "We say 8:01pm because it's funny." | 18fa
-Olivia: "I left my glasses in Sage." | 18fa
-Sanjeevani: "I might go to 505 if you beg really hard." | 18fa
-Sarah: "I'm NOT going to sing Sha-- Tell me something, boy."| 19sp
-Sophia: "I have a quiz on Thursday but I'm social chair and this is my life now." | 18fa
+Amy: Do you want a muffin?
+Caroline H: Shoot me goot!
+Caroline L: String.format("Hey guys, %s", programmingJoke); | I'm so mad I only got an A.
+Catherine: Is this Malaysia... or Texas? | Um, Robert... that's not how it's pronounced.
+Emily: opposite over adjacent
+Evelyn: Who wants to play Bananagrams?
+Hanna: Oh hi! | I'm sooooo tired. | I'm not pre-med! Wait, actually...
+Joelle: Guys I'm so stressed. | The plants need watering.
+Julia: Burning crops is not a healthy way to deal with anger.
+Nina: What is Glozz?
+Olivia: So anyways, I was tryna astral project
+Raye: I'm not Rui.
+Sanjeevani: Dude, I needa go to bed.
+Sarah: FUCK I MISS YOU GUYS LET'S HANG OUT! | You deserve it, queen!
+Sophia: Physucks
+Zoe: Here's the TRUTH about the murder hornets.

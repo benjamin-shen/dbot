@@ -159,21 +159,15 @@ def glozz():
     with open('members/glozzSA.txt', 'r') as file:
         glozzSA = file.readlines()
         for line in glozzSA:
-            name = line.strip()
-            if len(name) > 0: # verify name is valid
-                i = name.find("|")
-                if i != -1:
-                    name = name[:i] # ignore comment
-                glozz.append(name)
+            line = line.strip()
+            if len(line) > 0:
+                glozz.append(line)
     with open('members/glozzTB.txt', 'r') as file:
         glozzTB = file.readlines()
         for line in glozzTB:
-            name = line.strip()
-            if len(name) > 0: # verify name is valid
-                i = name.find("|")
-                if i != -1:
-                    name = name[:i] # ignore comment
-                glozz.append(name)
+            line = line.strip()
+            if len(line) > 0:
+                glozz.append(line)
     return glozz
 def glozz_0():
     members = []
@@ -224,9 +218,13 @@ def glozz_3():
 def glozz_4():
     isms = []
     for member in glozz():
-        if (member.find(':') != -1):
-            isms.append(member)
-    result = "No one:\n" + random.choice(isms)
+        i = member.find(":")
+        if i != -1:
+            name = member[:i]
+            quotes = member[i+1:].split("|")
+            for quote in quotes:
+                isms.append(name + ": \"" + quote.strip() + "\"")
+    result = random.choice(isms)
     send_message(result)
     return result
 def dinner_0():
