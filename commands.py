@@ -454,13 +454,13 @@ def tussle(participants):
 # implicit commands
 def dclub():
     result = ""
-    chance = random.randint(1,50)
-    if chance<=1:
+    chance = random.randint(1,100)
+    if chance <= 1:
         id = last_message('sender_id')
         if id=='43405903': # Dubem
             result = "We have " + str(random.randint(1,4)) + " out of 4 voice parts."
         elif id=='62752724': # Benjamin
-            result = "Daddy made me say this."
+            result = "Yes daddy."
         elif id=='49904547': # Lucas
             result = "Yoshi!"
         elif id=='26134002': # Nate
