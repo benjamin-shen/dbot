@@ -15,19 +15,21 @@ import json
 # config vars
 access_token = 'error'
 bot_id = 'error'
+groupme_dbot = 'error'
 group_id = 'error'
 def vars(): # init config variables
     global access_token
     global bot_id
     global group_id
     debug = os.getenv('DEBUG') == "true" or os.getenv('DEBUG') == "True"
+    access_token = os.getenv('GROUPME_TOKEN')
     if debug:
-        access_token = os.getenv('DEBUG_GROUPME_TOKEN')
         bot_id = os.getenv('DEBUG_GROUPME_BOT_ID')
+        groupme_dbot = os.getenv('DEBUG_GROUPME_DBOT')
         group_id = os.getenv('DEBUG_GROUPME_GROUP_ID')
     else:
-        access_token = os.getenv('GROUPME_TOKEN')
         bot_id = os.getenv('GROUPME_BOT_ID')
+        groupme_dbot = os.getenv('GROUPME_DBOT')
         group_id = os.getenv('GROUPME_GROUP_ID')
     if access_token=='error' or bot_id=='error' or group_id=='error':
         return 'error'
@@ -131,11 +133,10 @@ def add_member(nickname,userid,muted):
     added = requests.post(url, json=data)
     return added
 def message_cooldown():
-    dbot = os.getenv('GROUPME_DBOT')
     messages = get_messages()
     for message in messages:
         timePassed = time.time() - message['created_at']
-        if message['sender_id'] == dbot and timePassed < 300:
+        if message['sender_id'] == groupme_dbot and timePassed < 300:
             return False
     return True
 
@@ -356,7 +357,7 @@ def translate_1():
 def identify():
     result = ""
     message = get_messages()[1]
-    if message['sender_id'] == os.getenv('GROUPME_DBOT'):
+    if message['sender_id'] == groupme_dbot:
         result += "Hi, I'm dbot!"
     elif message['sender_type'] == 'bot':
         result += "It's another bot!"
