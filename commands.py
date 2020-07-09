@@ -138,6 +138,8 @@ def message_cooldown():
         timePassed = time.time() - message['created_at']
         print(timePassed)
         if message['sender_id'] == groupme_dbot and timePassed < 300:
+            print(message['sender_id'])
+            print(groupme_dbot)
             return False
     return True
 
@@ -409,7 +411,6 @@ functions = {
     "identify": identify,
     "tussle": tussle_0,
     "personality": personality,
-    "function": personality,
 }
 
 # other commands
