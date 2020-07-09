@@ -22,9 +22,10 @@ def webhook():
             msgdata = remove_mentions(text)
             msg = msgdata[0]
             mentioned = msgdata[1]
-            for key in dbot.keywordDict.keys():
-                if key in msg and not (key in str(mentioned)): # bot understands something
-                    bot_understood(key)
+            if dbot.message_cooldown():
+                for key in dbot.keywordDict.keys():
+                    if key in msg and not (key in str(mentioned)): # bot understands something
+                        bot_understood(key)
         # bot is implicitly called
         dbot.dclub()
     elif data['name'] == 'dbot' and data['sender_id'] != os.getenv('GROUPME_DBOT'): # dbot imposter
@@ -93,5 +94,5 @@ def bot_understood(keyword):
     elif keyword=='asshole' and random.randint(1,10) <= 1:
         dbot.asshole()
     else:
-        dbot.send_message(dbot.keywordDict[keyword]);
+        dbot.send_message(dbot.keywordDict[keyword])
     return 'ok'

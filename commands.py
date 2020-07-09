@@ -124,6 +124,14 @@ def add_member(nickname,userid,muted):
     }
     added = requests.post(url, json=data)
     return added
+def message_cooldown():
+    dbot = os.getenv('GROUPME_DBOT')
+    messages = get_messages()
+    for message in messages:
+        timePassed = time.time() - message['created_at']
+        if message['sender_id'] == dbot and timePassed < 300:
+            return False
+    return True
 
 # basic commands
 def d_help_0():
@@ -362,6 +370,10 @@ def identify():
 def tussle_0():
     result = "Tussle attempted."
     return result
+def personality():
+    result = "https://glozzpersonalitytest.herokuapp.com"
+    send_message(result)
+    return result
 
 # function dictionary
 functions = {
@@ -388,6 +400,7 @@ functions = {
     "translate-all": translate_1,
     "identify": identify,
     "tussle": tussle_0,
+    "personality": personality,
 }
 
 # other commands
