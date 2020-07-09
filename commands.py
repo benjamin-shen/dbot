@@ -20,6 +20,7 @@ group_id = 'error'
 def vars(): # init config variables
     global access_token
     global bot_id
+    global groupme_dbot
     global group_id
     debug = os.getenv('DEBUG') == "true" or os.getenv('DEBUG') == "True"
     access_token = os.getenv('GROUPME_TOKEN')
@@ -136,9 +137,6 @@ def message_cooldown():
     messages = get_messages()
     for message in messages:
         timePassed = time.time() - message['created_at']
-        print(timePassed)
-        print(message['sender_id'])
-        print(groupme_dbot)
         if message['sender_id'] == groupme_dbot and timePassed < 300:
             return False
     return True
