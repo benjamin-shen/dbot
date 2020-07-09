@@ -20,9 +20,15 @@ def vars(): # init config variables
     global access_token
     global bot_id
     global group_id
-    access_token = os.getenv('GROUPME_TOKEN')
-    bot_id = os.getenv('GROUPME_BOT_ID')
-    group_id = os.getenv('GROUPME_GROUP_ID')
+    debug = os.getenv('DEBUG') == "true" or os.getenv('DEBUG') == "True"
+    if debug:
+        access_token = os.getenv('DEBUG_GROUPME_TOKEN')
+        bot_id = os.getenv('DEBUG_GROUPME_BOT_ID')
+        group_id = os.getenv('DEBUG_GROUPME_GROUP_ID')
+    else:
+        access_token = os.getenv('GROUPME_TOKEN')
+        bot_id = os.getenv('GROUPME_BOT_ID')
+        group_id = os.getenv('GROUPME_GROUP_ID')
     if access_token=='error' or bot_id=='error' or group_id=='error':
         return 'error'
     return 'ok'
