@@ -137,9 +137,9 @@ def message_cooldown():
     for message in messages:
         timePassed = time.time() - message['created_at']
         print(timePassed)
+        print(message['sender_id'])
+        print(groupme_dbot)
         if message['sender_id'] == groupme_dbot and timePassed < 300:
-            print(message['sender_id'])
-            print(groupme_dbot)
             return False
     return True
 
@@ -381,7 +381,7 @@ def tussle_0():
     result = "Tussle attempted."
     return result
 def personality():
-    result = "https://glozzpersonalitytest.herokuapp.com"
+    result = "https://glozz.benjaminshen.com"
     send_message(result)
     return result
 
