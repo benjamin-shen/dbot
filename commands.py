@@ -242,7 +242,9 @@ def glozz_4():
                 quote = quote.strip()
                 if len(quote) > 0:
                     isms.append(name + ": \"" + quote + "\"")
-    result = random.choice(isms)
+    messages = get_messages()
+    messagesText = [message['text'] for message in messages if message['sender_id'] == groupme_dbot]
+    result = random.choice([ism for ism in isms if ism not in messagesText])
     send_message(result)
     return result
 def dinner_0():
