@@ -15,9 +15,10 @@ def webhook():
     time.sleep(1)
     data = request.get_json() # equivalent to last_message
     text = data['text'].lower()
+    result = []
     if data['sender_type'] == 'user':
         if text.startswith('dbot '): # bot is explicitly called
-            bot_commanded(parse(text))
+            result = [bot_commanded(parse(text))]
         else:
             msgdata = remove_mentions(text)
             msg = msgdata[0]
@@ -25,12 +26,16 @@ def webhook():
             if dbot.message_cooldown():
                 for key in dbot.keywordDict.keys():
                     if key in msg and not (key in str(mentioned)): # bot understands something
-                        bot_understood(key)
+                        result.append(bot_understood(key))
         # bot is implicitly called
-        dbot.dclub()
+        dclub = dbot.dclub()
+        if dclub != "":
+            result.append(dclub)
     elif data['name'] == 'dbot' and data['sender_id'] != os.getenv('GROUPME_DBOT'): # dbot imposter
-        dbot.send_message("Who are you?!")
-    return 'ok'
+        message = "Who are you?!"
+        dbot.send_message(message)
+        result = [message]
+    return result
 
 # text functions
 def remove_mentions(text):
@@ -73,26 +78,29 @@ def parse(text): # breaks down user message
 def bot_commanded(commands):
     length = len(commands)
     if length==0:
-        dbot.send_message("Try 'dbot help'.")
-        return 'ok'
+        message = "Try 'dbot help'."
+        dbot.send_message(message)
+        return [message]
     i = 0
+    result = []
     while i<length:
         j = 1
         command = commands[i]
         if i+1==length or commands[i+1][:1]!='-': # no parameters
-            dbot.functions[command]()
+            result.append(dbot.functions[command]())
         else:
             param = commands[i+j]
             while i+j<length and param[:1]=='-': # with parameters
-                dbot.functions[command+param]()
+                result.append(dbot.functions[command+param]())
                 j += 1
         i += j
-    return 'ok'
+    return result
 def bot_understood(keyword):
     if keyword=='dick' and random.randint(1,10) <= 1:
-        dbot.dick()
+        result = dbot.dick()
     elif keyword=='asshole' and random.randint(1,10) <= 1:
-        dbot.asshole()
+        result = dbot.asshole()
     else:
-        dbot.send_message(dbot.keywordDict[keyword])
-    return 'ok'
+        result = dbot.keywordDict[keyword]
+        dbot.send_message(result)
+    return [result]

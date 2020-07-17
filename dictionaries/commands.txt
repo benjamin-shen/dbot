@@ -8,5 +8,5 @@ weather: provide weather conditions in Ithaca (-forecast)
 bus: give the next bus time for the 90 from 505 to North
 translate: translates the last message (-all)
 identify: reveals the true identity of the last message's sender
-personality: links the personality quiz
 tussle: fight another person, can't target group creator or botmaster (@member/s)
+personality: links the personality quiz

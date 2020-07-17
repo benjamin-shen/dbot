@@ -381,7 +381,7 @@ def tussle_0():
     result = "Tussle attempted."
     return result
 def personality():
-    result = "https://glozz.benjaminshen.com"
+    result = "https://glozzpersonalitytest.herokuapp.com"
     send_message(result)
     return result
 
