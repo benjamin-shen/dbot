@@ -1,6 +1,4 @@
 dbot: I heard my name.
-glozz: It's a twister! Follow the yellow brick road. Somewhere over the rainbow... the wonderful wizard of GLOZZ!
-robert: BABA!
 steve: Dr. Steeeeve!
 general: *salute*
 tour: Yeah tour!
@@ -12,7 +10,6 @@ evening song: When the sun fades far away... o'er the dreaming lake a dell... jo
 chariot: I'm gonna ride!
 davy: Give my regards.
 harvard: zarzard~
-yale: Who owns gleeclub.com?
 upenn: P.U!
 sniped: GOTTEM
 
@@ -55,10 +52,6 @@ blowjob: A male whale and a female whale were swimming off the coast of Japan wh
 masturbate: You can masturbate but you can't give yourself a hug.
 ejaculate: what is female ejaculate? is it girl cum? where does it come from? does it taste delicious? is it because of the stimulation of the vagina that lead to the production of the fluid? is it pee? can i drink it? and is gamer girl's pee nice?
 bitch: What the fuck did you just fucking say about me, you little bitch? I'll have you know I graduated top of my class in the Navy Seals, and I've been involved in numerous secret raids on Al-Quaeda, and I have over 300 confirmed kills. I am trained in gorilla warfare and I'm the top sniper in the entire US armed forces. You are nothing to me but just another target. I will wipe you the fuck out with precision the likes of which has never been seen before on this Earth, mark my fucking words. You think you can get away with saying that shit to me over the Internet? Think again, fucker. As we speak I am contacting my secret network of spies across the USA and your IP is being traced right now so you better prepare for the storm, maggot. The storm that wipes out the pathetic little thing you call your life. You're fucking dead, kid. I can be anywhere, anytime, and I can kill you in over seven hundred ways, and that's just with my bare hands. Not only am I extensively trained in unarmed combat, but I have access to the entire arsenal of the United States Marine Corps and I will use it to its full extent to wipe your miserable ass off the face of the continent, you little shit. If only you could have known what unholy retribution your little "clever" comment was about to bring down upon you, maybe you would have held your fucking tongue. But you couldn't, you didn't, and now you're paying the price, you goddamn idiot. I will shit fury all over you and you will drown in it. You're fucking dead, kiddo.
-penis: I'm too mature for penis jokes.
 smash: Wanna smash? Spend time together, Make memories, Anal, Smile, Hold hands
-
-lucas g: I met Lucas at a tattoo parlor in 2014. He wanted to get a tattoo on his brain, but the artist said that it would kill him. Lucas said, "You don't know shit about art" and slapped him on the ass. The artist started crying. Lucas said, "Please stop, you're ugly when you cry."
-ben s: I met Ben at a graveyard in 2015. He was covered in ass and told me he opened a portal to hell. He said he's livestreaming and asked if I would join. I said, "I don't know, it seems dangerous." He said, "If I'm being honest, I don't know what I got myself into and I'm scared."
 
 rubato: https://pages.github.coecis.cornell.edu/glassboxgames/rubato-releases/
